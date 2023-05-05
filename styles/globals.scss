@@ -1,0 +1,39 @@
+// {/* <!-- Vendor CSS --> */}
+@import "/vendor/bootstrap/css/bootstrap.min.css";
+@import "/vendor/bootstrap/css/bootstrap.min.css";
+@import "/vendor/fontawesome-free/css/all.min.css";
+@import "/vendor/animate/animate.compat.css";
+@import "/vendor/simple-line-icons/css/simple-line-icons.min.css";
+@import "/vendor/owl.carousel/assets/owl.carousel.min.css";
+@import "/vendor/owl.carousel/assets/owl.theme.default.min.css";
+@import "/vendor/magnific-popup/magnific-popup.min.css";
+
+// {/* <!-- Theme CSS --> */}
+@import "/css/theme.css";
+@import "/css/theme-elements.css";
+@import "/css/theme-blog.css";
+@import "/css/theme-shop.css";
+
+// {/* <!-- Current Page CSS -->
+@import "/vendor/circle-flip-slideshow/css/component.css";
+
+// {/* <!-- Skin CSS -->
+@import "/css/skins/default.css";
+
+// {/* <!-- Theme Custom CSS --> */}
+@import "/css/custom.css";
+
+.custom-container {
+  padding: 0 5%;
+}
+
+.post-image {
+  img {
+    width: 100%;
+  }
+}
+
+html .scroll-to-top.visible {
+  opacity: .75;
+  margin: 10px;
+}
