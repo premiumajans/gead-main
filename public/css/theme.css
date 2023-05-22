@@ -1,9 +1,9 @@
 .sticky-header-active  .header-body {
-    top: -94px !important;
+    top: -50px !important;
 }
 
 .sticky-header-active  .header-logo img {
-    top: 90px !important;
+    top: 50px !important;
     width: 82px !important;
     height: 82px !important;
 }
@@ -1571,7 +1571,7 @@ html.sticky-header-enabled.sticky-header-active
     font-size: 13px;
     font-style: normal;
     font-weight: 600;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.3rem;
     letter-spacing: -0.5px;
     text-transform: uppercase;
     text-decoration: none;
@@ -6218,7 +6218,7 @@ html.sticky-header-enabled.sticky-header-active
 }
 @media (min-width: 992px) {
   #header .header-body:not(.h-100) {
-    height: auto !important;
+    height: 150px !important;
   }
 }
 @media (max-width: 991px) {

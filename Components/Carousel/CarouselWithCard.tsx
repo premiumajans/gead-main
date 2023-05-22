@@ -2,144 +2,45 @@ import CardTopImg from "../Card/CardTopImg";
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import dynamic from "next/dynamic";
+import {contentItem} from "@/interfaces/generalTypesInterfaces";
+import CustomHeader from "@/Components/CustomHeader/CustomHeader";
+import {useTranslation} from "react-i18next";
 
-const CarouselWithCard = () => {
+const CarouselWithCard = ({items, title, link}:{items:contentItem[], title:string, link?:string}) => {
+    const {t} = useTranslation('common')
     const OwlCarousel = dynamic(() => import('react-owl-carousel'),
             {
                 ssr: false,
             }
         )
-    ;
+
     return (
         <>
-            <div className="row">
-                <div className="col">
-                    <hr className="solid my-5"/>
-                </div>
-            </div>
+
             <div className="row py-4">
-                <div className="col">
+                {Array.isArray(items) && <div className="col">
+                    <CustomHeader>
+                        {t(title)}
+                    </CustomHeader>
                     <OwlCarousel responsive={{
                         '0': {'items': 1},
-                        '476': {'items': 1},
-                        '768': {'items': 5},
-                        '992': {'items': 4},
+                        '576': {'items': 2},
+                        '768': {'items': 3},
+                        '992': {'items': 3},
                         '1200': {'items': 4}
-                    }} dots={false} className='owl-theme' loop margin={10} autoplay  autoplayTimeout={3000} items={7}>
-                        <div className="item" >
+                    }} dots={false} className='owl-theme' loop margin={10} autoplay autoplayTimeout={3000} >
+                        { Array.isArray(items) && items.map(item => {
+                            return <div key={item.id} className="item">
 
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
+                                <div>
+                                    <CardTopImg link={(link ? link + item.id : '')} item={item} width={'auto'}/>
+                                </div>
 
-                        </div>
-                        <div className="item" >
-                            <div>
-                                <CardTopImg width={'auto'}/>
                             </div>
-                        </div>
-                        <div className="item" >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item" >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item" >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item" >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item" >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item" >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item" >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item" >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item" >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item" >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item" >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item " >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item " >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item " >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item " >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item " >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item " >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item " >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item" >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
-                        <div className="item" >
-                            <div>
-                                <CardTopImg width={'auto'}/>
-                            </div>
-                        </div>
+                        })}
+
                     </OwlCarousel>
-                </div>
+                </div>}
             </div>
         </>
     );

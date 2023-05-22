@@ -1,5 +1,123 @@
+
+.custom-container {
+  padding: 0 5%;
+}
+
+#header .header-nav-main nav ul li {
+  height: min-content;
+  padding: 0 0.2rem;
+}
+
+  .dropdown-item {
+    white-space: normal !important;
+  }
+
+body {
+  header {
+    .custom-container {
+      min-height: auto ;
+    }
+  }
+  .custom-container {
+    min-height: 70vh;
+  }
+}
+.search_wraper {
+  display: none;
+}
+  //.firs-nav {
+  //  //justify-content: flex-start !important;
+  //  align-self: auto !important;
+  //}
+
+.main {
+  min-height: 70vh;
+}
+
+.post-image {
+  img {
+    width: 100%;
+  }
+}
+
+html .scroll-to-top.visible {
+  opacity: .75;
+  margin: 10px;
+}
+
+.mobile {
+  display: none !important;
+}
+
+img[alt='Logo'] {
+  height: 100% !important;
+}
+
+#footer {
+  margin-top: 0;
+}
+
+.slick-next {
+  &:before {
+    font-size: 30px !important;
+  }
+  position:absolute;
+  right: 20px !important;
+  z-index: 100;
+}
+
+.slick-prev {
+  &:before {
+    font-size: 30px !important;
+  }
+  position:absolute;
+  left: 20px !important;
+  z-index: 100;
+}
+
+.sticky-header-active {
+  .firs-nav {
+    justify-content: end !important;
+  }
+}
+
+html {
+  overflow-x: hidden;
+}
+
+.social-icons {
+  li {
+    padding: 0 !important;
+  }
+}
+
+.scroll-to-top {
+  margin: 10px;
+  opacity: 0;
+}
+
+.sticky-header-active {
+  .scroll-to-top {
+    display: block !important;
+    opacity: 0.75;
+  }
+}
+
+
+// html , body, #__next {
+//   position: relative;
+//   min-height: 100vh;
+// }
+
+// footer {
+//   position: absolute !important;
+//   width: 100%;
+//   bottom: 0;
+// }
+
+
 // {/* <!-- Vendor CSS --> */}
-@import "/vendor/bootstrap/css/bootstrap.min.css";
+@import './media-styles.scss';
 @import "/vendor/bootstrap/css/bootstrap.min.css";
 @import "/vendor/fontawesome-free/css/all.min.css";
 @import "/vendor/animate/animate.compat.css";
@@ -22,18 +140,3 @@
 
 // {/* <!-- Theme Custom CSS --> */}
 @import "/css/custom.css";
-
-.custom-container {
-  padding: 0 5%;
-}
-
-.post-image {
-  img {
-    width: 100%;
-  }
-}
-
-html .scroll-to-top.visible {
-  opacity: .75;
-  margin: 10px;
-}
