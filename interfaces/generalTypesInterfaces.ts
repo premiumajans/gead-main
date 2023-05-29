@@ -192,3 +192,8 @@ interface searchItemTranslation {
     name: string,
     content: string,
 }
+
+export interface  videoItem {
+    "id": number,
+    "link": string,
+}

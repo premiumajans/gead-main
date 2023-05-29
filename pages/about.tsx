@@ -12,7 +12,7 @@ const About = ({data}: { data: aboutResponse[] }) => {
             <Head>
                 <meta name="keywords" content={'gead.az, GƏNCLƏRİN ELMİ ARAŞDIRMALARINA DƏSTƏK İctimai Birliyi'}/>
                 <title>
-                    {t("about") + ' | GEAD' }
+                    {t('about') !== 'about' ? t('about') + ' | GEAD' : '...'}
                 </title>
             </Head>
             <div style={{minHeight: '60vh'}} role="main" className="main">

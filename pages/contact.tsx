@@ -63,7 +63,7 @@ const Contact = () => {
             <Head>
                 <meta name="keywords" content={'gead.az, GƏNCLƏRİN ELMİ ARAŞDIRMALARINA DƏSTƏK İctimai Birliyi'}/>
                 <title>
-                    {t("contact-us") + ' | GEAD'}
+                    {t('contact-us') !== 'contact-us' ? t('contact-us') + ' | GEAD' : '...'}
                 </title>
             </Head>
             <div

@@ -38,7 +38,7 @@ const Search_text = ({data: {result}}: { data: { result: searchItem[] } }) => {
         <>
             <Head>
                 <title>
-                    {isArrayResult ? result.length : 0} {t('search-result-1')} {query.search_text + ' | GEAD'}
+                    {t('photo-gallery') !== 'photo-gallery' ? (isArrayResult ? result.length : 0 + t('search-result-1') + query.search_text + ' | GEAD') : '...'}
                 </title>
             </Head>
             <div role="main" className="main">
@@ -51,9 +51,6 @@ const Search_text = ({data: {result}}: { data: { result: searchItem[] } }) => {
                                 <h1 className="text-light text-10">
                                     <strong>{t('search')}</strong>
                                 </h1>{" "}
-                                <span className="sub-title text-light">
-                  {isArrayResult ? result.length : 0} {t('search-result-1')} <strong>{query.search_text}</strong>
-                </span>{" "}
                             </div>
                             {" "}
                         </div>
@@ -77,7 +74,7 @@ const Search_text = ({data: {result}}: { data: { result: searchItem[] } }) => {
                                             id="headerSearch"
                                             name="search"
                                             type="search"
-                                            placeholder="Search..."
+                                            placeholder={`${t('search')}`}
                                             ref={inputRef}
                                         />{" "}
                                         <button className="btn" type="submit">
@@ -97,10 +94,8 @@ const Search_text = ({data: {result}}: { data: { result: searchItem[] } }) => {
                     <div className="row">
                         <div className="col">
                             <h2 className="font-weight-normal text-7 mb-0">
-                                {t('showing-result')}{" "}
-                                <strong className="font-weight-extra-bold">{query.search_text}</strong>
+                                {isArrayResult ? result.length : 0} {t('search-result-1')}: <strong>{query.search_text}</strong>
                             </h2>
-                            <p className="lead mb-0">{isArrayResult ? result?.length : 0} results found.</p>
                         </div>
                     </div>
                     <div className="row">
@@ -115,7 +110,8 @@ const Search_text = ({data: {result}}: { data: { result: searchItem[] } }) => {
                                     {result && result.length > 0 && result.slice((pagination - 1) * 10, (pagination - 1) * 10 + 10).map(item => {
                                         return <li key={item.id}>
                                             <div style={{display:'flex', alignItems:'center'}} className="post-info">
-                                                {item?.photo?.length > 0 && <Image style={{marginRight:'15px', objectFit: "cover"}} width={150} height={75} src={process.env["NEXT_PUBLIC_MAIN_PATH_WITHOUT_API"] + item.photo} alt={item?.translations.find(item => item.locale === i18n.language)?.name || 'img'}/>}
+                                                {item?.photo?.length > 0 &&  <Link
+                                                    href={`/content/${item.id}`}><Image style={{marginRight:'15px', objectFit: "cover"}} width={150} height={75} src={process.env["NEXT_PUBLIC_MAIN_PATH_WITHOUT_API"] + item.photo} alt={item?.translations.find(item => item.locale === i18n.language)?.name || 'img'}/></Link>}
                                                 <div className="text_info">
                                                     <Link
                                                         href={`/content/${item.id}`}>{item.translations.find(item => item.locale === i18n?.language)?.name}</Link>

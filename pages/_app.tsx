@@ -15,10 +15,11 @@ import {categoryItem} from "@/interfaces/generalTypesInterfaces";
 import HeaderWraper from "@/Components/Header/Header";
 import Footer from "@/Components/Footer/Footer";
 import {useTranslation} from "react-i18next";
+import {useRouter} from "next/router";
 
 function App({Component, pageProps}: AppProps<{ categories: categoryItem[] }>) {
     const {data} = useSettingsQuery('');
-    const {i18n} = useTranslation()
+    const {i18n,t} = useTranslation()
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -28,6 +29,9 @@ function App({Component, pageProps}: AppProps<{ categories: categoryItem[] }>) {
         }
     }, [data]);
 
+    if(!t) {
+        return <></>
+    }
 
     return <>
         <StrictMode>

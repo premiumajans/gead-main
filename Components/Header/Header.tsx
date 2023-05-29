@@ -61,7 +61,6 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
         }
     })
 
-
     return (
         <>
             <header
@@ -78,7 +77,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                         className="header-logo"
                                         style={{height: "90%"}}
                                     >
-                                        <Link href="/">
+                                        <Link onClick={() => setMenu(false)} href="/">
                                             <Image
                                                 alt="GƏNCLƏRİN ELMİ ARAŞDIRMALARINA DƏSTƏK İctimai Birliyi"
                                                 width="165"
@@ -285,7 +284,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                     id="headerSearch"
                                                                     name="search"
                                                                     type="search"
-                                                                    placeholder="Search..."
+                                                                    placeholder={`${t('search')}`}
                                                                     ref={inputRef2}
                                                                 />{" "}
                                                                 <button className="btn" type="submit">
@@ -334,6 +333,14 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                                     }}
                                                                                               className="dropdown-item"
                                                                                               href='/photo-gallery'>{t('photo-gallery')}</Link>
+                                                                                    </li>
+
+                                                                                    <li><Link onClick={() => {
+                                                                                        setCatItems([])
+                                                                                        setMenu(false)
+                                                                                    }}
+                                                                                              className="dropdown-item"
+                                                                                              href='/video-gallery'>{t('video-gallery')}</Link>
                                                                                     </li>
 
                                                                                 </ul>
@@ -564,7 +571,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                     id="headerSearch"
                                                                     name="search"
                                                                     type="search"
-                                                                    placeholder="Search..."
+                                                                    placeholder={`${t('search')}`}
                                                                     ref={inputRef1}
                                                                 />{" "}
                                                                 <button className="btn" type="submit">

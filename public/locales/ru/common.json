@@ -1,4 +1,5 @@
 {
+  "video-gallery": "Видео галерея",
   "about": "О нас",
   "main-page": "Главная страница",
   "add-email": "Добавьте свой адрес электронной почты",
@@ -18,9 +19,9 @@
   "copyright": "Авторские права",
   "photo_gallery": "Foto qalereya",
   "writers": "Колумнисты",
-  "download": "Скачать",
-  "showing-result": "Показаны результаты для:",
-  "search-result-1": "результаты поиска для:",
+  "download": "Скачать Pdf",
+  "showing-result": "Показаны результаты для",
+  "search-result-1": "результаты поиска для",
   "search": "Поиск",
   "about-gead": "О GEAD",
   "photo-gallery": "Фото галерея",

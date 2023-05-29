@@ -34,13 +34,14 @@ const NewPage = ({data}: { data: { content: contentItem, related: contentItem[] 
         setSession(JSON.parse(sessionStorage.getItem('sessionData')!))
     }, [])
 
+    const translatedName = useMemo(() => (translations?.find(item => item.locale === i18n.language)?.name),[translations,i18n.language])
 
     return <>
         <Head>
             <meta name="keywords"
                   content={`${currentCategory?.translations.find(item => item.locale === i18n.language)?.name}, ${currentCategory?.alt?.find(item => item.id === +data.content.alt_id)?.translations.find(item => item.locale === i18n.language)?.name}, ${currentCategory?.alt?.find(item => item.id === +data.content.alt_id)?.sub.find((item => item.id === +data.content.sub_id))?.translations.find(item => item.locale === i18n.language)?.name}, ${translations?.find(item => item.locale === i18n.language)?.name}`}/>
             <title>
-                {translations?.find(item => item.locale === i18n.language)?.name + ' | GEAD'}
+                {translatedName  ? translatedName + ' | GEAD' : '...'}
             </title>
         </Head>
         <div role="main" className="main">
@@ -72,7 +73,7 @@ const NewPage = ({data}: { data: { content: contentItem, related: contentItem[] 
                                 <article className="post post-large blog-single-post border-0 m-0 p-0">
                                     {photo?.length > 0 ? <div className="post-image ms-0">
                                         <div className="img-thumbnail border-0 p-0 d-block">
-                                            <Image width={250} height={250} className="img-fluid border-radius-0"
+                                            <Image width={1000} height={1000} className="img-fluid border-radius-0"
                                                    src={process.env["NEXT_PUBLIC_MAIN_PATH_WITHOUT_API"] + photo}
                                                    alt={translations.find(item => item.locale === i18n.language)?.name || 'img'}/>
                                         </div>

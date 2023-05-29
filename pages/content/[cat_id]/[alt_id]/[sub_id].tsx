@@ -18,14 +18,15 @@ const ContentPage = ({data}: { data: { content: contentItem[] } }) => {
         return categories?.categories.find((item => item.id === +cat_id!))
     }, [])
 
-    const header = `${myHeaderInfo?.translations.find(item => item.locale === i18n.language)?.name.toLowerCase()} / ${myHeaderInfo?.alt.find(item => item.id === +alt_id!)?.translations.find(item => item.locale === i18n.language)?.name.toLowerCase()} / ${myHeaderInfo?.alt?.find(item => item.id === +alt_id!)?.sub?.find(item => item.id === +sub_id!)?.translations.find(item => item.locale === i18n.language)?.name.toLowerCase()}`
+    const headerTranslatedNames = useMemo(() => [myHeaderInfo?.translations.find(item => item.locale === i18n.language)?.name, myHeaderInfo?.alt.find(item => item.id === +alt_id!)?.translations.find(item => item.locale === i18n.language)?.name, myHeaderInfo?.alt?.find(item => item.id === +alt_id!)?.sub?.find(item => item.id === +sub_id!)?.translations.find(item => item.locale === i18n.language)?.name ],[myHeaderInfo,i18n.language])
+    const header = !(headerTranslatedNames.every(item => (item === undefined))) ? `${headerTranslatedNames[0]!.toLowerCase()} / ${headerTranslatedNames[1]!.toLowerCase()} / ${headerTranslatedNames[2]!.toLowerCase()}` : ''
 
     return <>
         <Head>
             <meta name="keywords" content={header}/>
 
             <title>
-                {header + ' | GEAD'}
+                {header ? (header + ' | GEAD') : '...'}
             </title>
         </Head>
         <div className="custom-container py-4">

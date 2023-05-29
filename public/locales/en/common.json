@@ -1,4 +1,5 @@
 {
+  "video-gallery": "Video gallery",
   "about": "About us",
   "main-page": "Main page",
   "add-email": "Add your email",
@@ -18,9 +19,9 @@
   "copyright": "Copyright",
   "photo_gallery": "Photo gallery",
   "writers": "Columnists",
-  "download": "Download",
-  "showing-result": "Showing results for:",
-  "search-result-1": "search results for:",
+  "download": "Download Pdf",
+  "showing-result": "Showing results for",
+  "search-result-1": "search results for",
   "search": "Search",
   "about-gead": "About GEAD",
   "photo-gallery": "Photo Gallery",

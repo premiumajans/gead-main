@@ -1,6 +1,6 @@
 import FsLightbox from "fslightbox-react";
 import Image from "next/image";
-import React, {useState} from "react";
+import React, {useMemo, useState} from "react";
 import {useTranslation} from "react-i18next";
 import CustomHeader from "@/Components/CustomHeader/CustomHeader";
 import {galleryInterface} from "@/interfaces/generalTypesInterfaces";
@@ -12,13 +12,13 @@ const GalleryPhotos = ({gallery:{photos,translations}}:{gallery:galleryInterface
     const [slideIndex, setSlideIndex] = useState(0);
     const {i18n,t} = useTranslation('common')
 
-    console.log(photos?.length)
+    const translatedName = useMemo(() => translations.find(el => el.locale == i18n.language)?.name,[i18n.language, translations])
     return (
         <>
             <Head>
                 <meta name="keywords" content={translations.find(el => el.locale == i18n.language)?.name}/>
                 <title>
-                    {translations.find(el => el.locale == i18n.language)?.name + ' | GEAD'}
+                    {translatedName ? translatedName + ' | GEAD' : '...'}
                 </title>
             </Head>
             <main className="custom-container my-4">
@@ -76,7 +76,7 @@ const GalleryPhotos = ({gallery:{photos,translations}}:{gallery:galleryInterface
                             })}
                         </div>
                     </div>
-                </> : <AlertComponent imgSrc={'/img/notData.jpg'} />}
+                </> : <AlertComponent imgSrc={'/img/noData.jpg'} />}
             </main>
         </>
     );

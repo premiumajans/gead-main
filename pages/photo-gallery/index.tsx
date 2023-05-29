@@ -4,6 +4,7 @@ import CustomHeader from "@/Components/CustomHeader/CustomHeader";
 import {useTranslation} from "react-i18next";
 import Head from "next/head";
 import React from "react";
+import AlertComponent from "@/Components/AleryComponent/AlertComponent";
 
 const PhotoGalery = ({data}: { data: galleryInterface[] }) => {
     const {t} = useTranslation('common')
@@ -11,7 +12,7 @@ const PhotoGalery = ({data}: { data: galleryInterface[] }) => {
         <Head>
             <meta name="keywords" content={`${t('photo-gallery')}`}/>
             <title>
-                {t('photo-gallery') + ' | GEAD'}
+                {t('photo-gallery') !== 'photo-gallery' ? t('photo-gallery') + ' | GEAD' : '...'}
             </title>
         </Head>
         <div className="custom-container my-3">
@@ -26,7 +27,7 @@ const PhotoGalery = ({data}: { data: galleryInterface[] }) => {
                                                width={'none'}/>
                     })}
                 </div>
-            </> : ''}
+            </> : <AlertComponent imgSrc={'/img/noData.jpg'} />}
 
         </div>
     </>

@@ -1,11 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
 
 .custom-container {
   padding: 0 5%;
 }
 
+.dropdown-menu {
+  width: 100%;
+}
+
 #header .header-nav-main nav ul li {
   height: min-content;
-  padding: 0 0.2rem;
+  padding: 0;
 }
 
   .dropdown-item {

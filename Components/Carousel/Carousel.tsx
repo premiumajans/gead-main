@@ -34,7 +34,7 @@ const Carousel = ({data}: { data: usefulLink[] | undefined }) => {
                             <div key={item.id} className="item" style={{width: "159.429px", margin: '0 auto'}}>
                                 <div>
                                     <a target='_blank' href={item.link!}>
-                                        <Image width={150} height={150} style={{height: '150px', objectFit:'cover'}} className="img-fluid"
+                                        <Image width={150} height={150} style={{height: '150px', objectFit:'contain'}} className="img-fluid"
                                              src={process.env.NEXT_PUBLIC_MAIN_PATH_WITHOUT_API + item.photo} alt={process.env.NEXT_PUBLIC_MAIN_PATH_WITHOUT_API + item.photo}/>
                                     </a>
                                 </div>

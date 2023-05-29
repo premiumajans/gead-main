@@ -6,7 +6,7 @@ const AlertComponent = ({imgSrc}:{imgSrc:string}) => {
         <div className="appear-animation custom-container my-4"
              data-appear-animation="fadeIn"
              data-appear-animation-delay="0"
-             style={{textAlign: 'center', animationDuration: "1s", animationDelay: "0ms"}}><Image
+             style={{textAlign: 'center', animationDuration: "1s", animationDelay: "0ms"}}><img
             style={{objectFit: 'contain', maxWidth: '100%', height: 'auto'}} src={imgSrc}
             alt={'alert-image'} width={1000} height={600}/></div>
     );

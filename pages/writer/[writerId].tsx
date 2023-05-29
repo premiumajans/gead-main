@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useMemo} from "react";
 import ReactHtmlParser from 'react-html-parser'
 import {useTranslation} from "react-i18next";
 import {contentItem} from "@/interfaces/generalTypesInterfaces";
@@ -14,12 +14,12 @@ const WritePage = ({data: {writers, relatedItems}}: {
     const {i18n, t} = useTranslation('common')
     const {pdf, translations, view, name, photo, created_at} = writers
 
-
+    const translatedName = useMemo(() => translations?.find(item => item.locale === i18n.language)?.name,[i18n.language, translations])
     return <>
         <Head>
             <meta name="keywords" content={translations?.find(item => item.locale === i18n.language)?.name}/>
             <title>
-                {translations?.find(item => item.locale === i18n.language)?.name + ' | GEAD'}
+                {translations ? translatedName + ' | GEAD' : '...'}
             </title>
         </Head>
         <div role="main" className="main">
@@ -65,9 +65,6 @@ const WritePage = ({data: {writers, relatedItems}}: {
                         {pdf?.length > 0 && <ModalForm/>}
                         <span style={{color: '#1d388c'}} className='mx-3'><i
                             className="far fa-calendar"></i> <a>{transformDate(created_at)}</a> </span>
-                        <span style={{color: '#1d388c'}} className='mx-3'><i
-                            className="far fa-eye"></i> <a>{view}</a></span>
-
 
                     </div>
 
