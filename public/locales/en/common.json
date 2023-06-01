@@ -1,4 +1,11 @@
 {
+  "register-is-successful": "Register is successful",
+  "submit": "Submit",
+  "name": "Name",
+  "surname": "Surname",
+  "position": "Position",
+  "work_education": "Workplace or Education",
+  "register": "Register now",
   "video-gallery": "Video gallery",
   "about": "About us",
   "main-page": "Main page",

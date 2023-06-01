@@ -31,7 +31,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
     }, [])
 
     const openMobileItem = (i: number) => {
-        if (window.screen.width <= 992) {
+        if (window.screen.width < 992) {
             const currentArray:boolean[] = [...catItems]
             currentArray[i] = !currentArray[i]
             setCatItems([...currentArray])
@@ -477,6 +477,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                             <i className="fas fa-angle-down"></i>{" "}
                                                         </a>{" "}
                                                         <div
+                                                            style={{width:'min-content'}}
                                                             className="dropdown-menu"
                                                             aria-labelledby="dropdownLanguage"
                                                         >

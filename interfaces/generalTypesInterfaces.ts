@@ -138,6 +138,7 @@ interface mainSliderTranslation {
 
 
 export interface contentItem {
+    register:string,
     photos:photosItem[],
     id: number,
     photo: string,

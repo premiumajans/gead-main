@@ -1,4 +1,11 @@
 {
+  "submit": "Göndər",
+  "register-is-successful": "Qeydiyyat uğurla tamamlandı",
+  "name": "Ad",
+  "surname": "Soyad",
+  "position": "Vəzifə",
+  "work_education": "Oxuduğu və ya işlədiyi yer",
+  "register": "İndi qeydiyyatdan keçin",
   "video-gallery": "Video qalereya",
   "about": "Bizim haqqımızda",
   "main-page": "Əsas səhifə",

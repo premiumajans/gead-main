@@ -12,11 +12,12 @@ import {useCategoriesQuery, useContentMailMutation} from "@/Store/Query/GeneralQ
 import {useRouter} from "next/router";
 import Head from "next/head";
 import AlertComponent from "@/Components/AleryComponent/AlertComponent";
+import ContentForm from "@/Components/ContentForm/ContentForm";
 
-const NewPage = ({data}: { data: { content: contentItem, related: contentItem[] } }) => {
+const NewPage = ({data}: { data: { content: contentItem ,  related: contentItem[]  } }) => {
     const {query} = useRouter()
     const {i18n, t} = useTranslation('common')
-    const {pdf, translations, view, name, photo, created_at, photos} = data.content
+    const {pdf, translations, view, name, photo, created_at, photos,register} = data.content
     const related = data.related
     const [toggler, setToggler] = useState(false);
     const [slideIndex, setSlideIndex] = useState(0);
@@ -155,6 +156,8 @@ const NewPage = ({data}: { data: { content: contentItem, related: contentItem[] 
                         <CarouselWithCard title={'related_news'} items={related}/>
                     </div> : ''
                     }
+
+                    {+register ? <ContentForm/> : ''}
                 </> : <AlertComponent imgSrc={'/img/notData.jpg'}/>}
 
             </div>
