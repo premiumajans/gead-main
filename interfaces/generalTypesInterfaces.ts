@@ -1,7 +1,8 @@
 export interface generalInterface {
     settings: settingItem[];
     gallery: galleryInterface,
-    sessionData:any
+    sessionData:any,
+    language:'en' | 'az' | 'ru'
 }
 
 export interface contentParam {

@@ -17,6 +17,7 @@ const initialState = {
     status: 0,
     translations: [],
   },
+  language:'az',
   sessionData:''
 } as generalInterface;
 const General = createSlice({
@@ -28,6 +29,9 @@ const General = createSlice({
     },
     setCurrentGallery: (state, action) => {
       state.gallery = action.payload;
+    },
+    setLanguage: (state, action) => {
+      state.language = action.payload;
     }
   },
   extraReducers: {
@@ -42,10 +46,15 @@ const General = createSlice({
 
 export default General.reducer;
 
-export const {setSettings, setCurrentGallery } = General.actions;
+export const {setSettings, setCurrentGallery,setLanguage } = General.actions;
 
 export const getSettingState = (state: any) =>
   state.General.settings as settingItem[];
+
+export const getLanguage = (state: any) =>
+    state.General.language  as 'en' | 'az' | 'ru';
+
+
 
 
 export const getGalleryState = (state: any) =>

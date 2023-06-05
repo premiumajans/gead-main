@@ -3,12 +3,14 @@ import {PropsWithChildren, SetStateAction, useEffect, useRef, useState} from "re
 import Link from "next/link";
 import {useTranslation} from "react-i18next";
 import {useCategoriesQuery} from "@/Store/Query/GeneralQuery";
-import {useSelector} from "react-redux";
-import {getSettingState} from "@/Store/Slices/General";
+import {useDispatch, useSelector} from "react-redux";
+import {getLanguage, getSettingState, setLanguage} from "@/Store/Slices/General";
 import {useRouter} from "next/router";
-import {categoryItem} from "@/interfaces/generalTypesInterfaces";
 
 const HeaderWraper = ({children}: PropsWithChildren) => {
+    const language = useSelector(getLanguage)
+
+    const dispatch = useDispatch()
     const [search, setSearch] = useState(false)
     const [menu, setMenu] = useState(false)
     const {push} = useRouter()
@@ -186,17 +188,17 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                     src="/img/blank.gif"
                                                                     className={
                                                                         "flag " +
-                                                                        (i18n.language === "en"
+                                                                        (language === "en"
                                                                             ? "flag-us"
-                                                                            : "flag-" + i18n.language)
+                                                                            : "flag-" + language)
                                                                     }
                                                                     alt="English"
                                                                 />{" "}
-                                                                {i18n.language == "en"
+                                                                {language == "en"
                                                                     ? "English"
-                                                                    : i18n.language == "az"
+                                                                    : language == "az"
                                                                         ? "Azərbaycan"
-                                                                        : i18n.language == "ru"
+                                                                        : language == "ru"
                                                                             ? "Русский"
                                                                             : ""}{" "}
                                                                 <i className="fas fa-angle-down"></i>{" "}
@@ -209,7 +211,10 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                 <a
                                                                     onClick={() => {
                                                                         i18n.changeLanguage("az")
-                                                                        localStorage.setItem('language', 'az')
+                                                                            .then(() => {
+                                                                                dispatch(setLanguage('az'))
+                                                                            })
+
                                                                     }}
                                                                     className="dropdown-item"
                                                                     href="#"
@@ -225,8 +230,10 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                 </a>{" "}
                                                                 <a
                                                                     onClick={() => {
-                                                                        i18n.changeLanguage("en")
-                                                                        localStorage.setItem('language', 'en')
+                                                                        i18n.changeLanguage("en").then(() => {
+                                                                            dispatch(setLanguage('en'))
+                                                                        })
+
                                                                     }}
                                                                     className="dropdown-item"
                                                                     href="#"
@@ -243,7 +250,10 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                 <a
                                                                     onClick={() => {
                                                                         i18n.changeLanguage("ru")
-                                                                        localStorage.setItem('language', 'ru')
+                                                                            .then(() => {
+                                                                                dispatch(setLanguage('ru'))
+                                                                            })
+
                                                                     }}
                                                                     className="dropdown-item"
                                                                     href="#"
@@ -313,7 +323,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                         {" "}
                                                                         {
                                                                             item.translations.find(
-                                                                                (el) => el.locale == i18n.language
+                                                                                (el) => el.locale == language
                                                                             )?.name
                                                                         }
                                                                         <i className="fas fa-chevron-down"></i>
@@ -380,7 +390,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                                         {
                                                                                             alt.translations.find(
                                                                                                 (el) =>
-                                                                                                    el.locale == i18n.language
+                                                                                                    el.locale == language
                                                                                             )?.name
                                                                                         }
                                                                                     </a> : <Link onClick={() => {
@@ -393,7 +403,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                                         {
                                                                                             alt.translations.find(
                                                                                                 (el) =>
-                                                                                                    el.locale == i18n.language
+                                                                                                    el.locale == language
                                                                                             )?.name
                                                                                         }
                                                                                     </Link>}
@@ -413,7 +423,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                                                             sub.translations.find(
                                                                                                                 (el) =>
                                                                                                                     el.locale ==
-                                                                                                                    i18n.language
+                                                                                                                    language
                                                                                                             )?.name
                                                                                                         }
                                                                                                     </Link>
@@ -461,17 +471,17 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                 src="/img/blank.gif"
                                                                 className={
                                                                     "flag " +
-                                                                    (i18n.language === "en"
+                                                                    (language === "en"
                                                                         ? "flag-us"
-                                                                        : "flag-" + i18n.language)
+                                                                        : "flag-" + language)
                                                                 }
                                                                 alt="English"
                                                             />{" "}
-                                                            {i18n.language == "en"
+                                                            {language == "en"
                                                                 ? "English"
-                                                                : i18n.language == "az"
+                                                                : language == "az"
                                                                     ? "Azərbaycan"
-                                                                    : i18n.language == "ru"
+                                                                    : language == "ru"
                                                                         ? "Русский"
                                                                         : ""}{" "}
                                                             <i className="fas fa-angle-down"></i>{" "}
@@ -485,7 +495,10 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                             <a
                                                                 onClick={() => {
                                                                     i18n.changeLanguage("az")
-                                                                    localStorage.setItem('language', 'az')
+                                                                        .then(() => {
+                                                                            dispatch(setLanguage('az'))
+                                                                        })
+
                                                                 }}
                                                                 className="dropdown-item"
                                                                 href="#"
@@ -502,7 +515,10 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                             <a
                                                                 onClick={() => {
                                                                     i18n.changeLanguage("en")
-                                                                    localStorage.setItem('language', 'en')
+                                                                        .then(res => {
+                                                                            dispatch(setLanguage('en'))
+                                                                        })
+
                                                                 }}
                                                                 className="dropdown-item"
                                                                 href="#"
@@ -519,7 +535,10 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                             <a
                                                                 onClick={() => {
                                                                     i18n.changeLanguage("ru")
-                                                                    localStorage.setItem('language', 'ru')
+                                                                        .then(() => {
+                                                                            dispatch(setLanguage('ru'))
+                                                                        })
+
                                                                 }}
                                                                 className="dropdown-item"
                                                                 href="#"

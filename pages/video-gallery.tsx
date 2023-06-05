@@ -13,7 +13,7 @@ const GalleryVideos = ({videos}: { videos: videoItem[] }) => {
             <Head>
                 {/*<meta name="keywords" content={translations.find(el => el.locale == i18n.language)?.name}/>*/}
                 <title>
-                    {t('video-gallery') !== 'video-gallery' ? t('video-gallery') + ' | GEAD' : '...'}
+                    {t('video-gallery') !== 'video-gallery' ? t('video-gallery') + ' | GEAD' : 'GEAD'}
                 </title>
             </Head>
             <main className="custom-container my-4">

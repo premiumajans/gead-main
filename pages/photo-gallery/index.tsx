@@ -12,7 +12,7 @@ const PhotoGalery = ({data}: { data: galleryInterface[] }) => {
         <Head>
             <meta name="keywords" content={`${t('photo-gallery')}`}/>
             <title>
-                {t('photo-gallery') !== 'photo-gallery' ? t('photo-gallery') + ' | GEAD' : '...'}
+                {t('photo-gallery') !== 'photo-gallery' ? t('photo-gallery') + ' | GEAD' : 'GEAD'}
             </title>
         </Head>
         <div className="custom-container my-3">

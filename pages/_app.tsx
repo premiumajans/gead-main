@@ -1,5 +1,5 @@
 import {useSettingsQuery} from "@/Store/Query/GeneralQuery";
-import {setSettings} from "@/Store/Slices/General";
+import {getLanguage, setSettings} from "@/Store/Slices/General";
 import {store} from "@/Store/store";
 import {ni18nConfig} from "@/ni18n.config";
 import "@/styles/globals.scss";
@@ -8,16 +8,16 @@ import {createWrapper} from "next-redux-wrapper";
 import type {AppProps} from "next/app";
 import {appWithI18Next} from "ni18n";
 import {StrictMode, useEffect} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import {categoryItem} from "@/interfaces/generalTypesInterfaces";
 import HeaderWraper from "@/Components/Header/Header";
 import Footer from "@/Components/Footer/Footer";
 import {useTranslation} from "react-i18next";
-import {useRouter} from "next/router";
 
 function App({Component, pageProps}: AppProps<{ categories: categoryItem[] }>) {
+    const language = useSelector(getLanguage)
     const {data} = useSettingsQuery('');
     const {i18n,t} = useTranslation()
 
@@ -28,6 +28,17 @@ function App({Component, pageProps}: AppProps<{ categories: categoryItem[] }>) {
             dispatch(setSettings(data.settings));
         }
     }, [data]);
+
+
+    useEffect(() => {
+        const load = async () => {
+            await i18n.changeLanguage(language);
+        };
+        load();
+    },[])
+
+
+
 
     if(!t) {
         return <></>

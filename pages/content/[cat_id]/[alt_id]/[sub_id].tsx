@@ -1,32 +1,32 @@
 import CardTopImg from "@/Components/Card/CardTopImg";
 import {useTranslation} from "react-i18next";
-import {useCategoriesQuery} from "@/Store/Query/GeneralQuery";
-import {contentItem} from "@/interfaces/generalTypesInterfaces";
+import {categoryItem, contentItem} from "@/interfaces/generalTypesInterfaces";
 import CustomHeader from "@/Components/CustomHeader/CustomHeader";
-import React, {useMemo} from "react";
+import React from "react";
 import {useRouter} from "next/router";
 import Head from "next/head";
 import Image from "next/image";
+import {useSelector} from "react-redux";
+import {getLanguage} from "@/Store/Slices/General";
 
 
-const ContentPage = ({data}: { data: { content: contentItem[] } }) => {
+const ContentPage = ({data,category:{categories}}: { data: { content: contentItem[] },category:{categories:categoryItem[]} }) => {
     const {query: {cat_id, alt_id, sub_id}} = useRouter()
     const {t, i18n} = useTranslation('common')
-    const {data: categories, isLoading} = useCategoriesQuery('');
+    const language = useSelector(getLanguage)
 
-    const myHeaderInfo = useMemo(() => {
-        return categories?.categories.find((item => item.id === +cat_id!))
-    }, [])
+    const myHeaderInfo =  categories.find((item => item.id === +cat_id!))
 
-    const headerTranslatedNames = useMemo(() => [myHeaderInfo?.translations.find(item => item.locale === i18n.language)?.name, myHeaderInfo?.alt.find(item => item.id === +alt_id!)?.translations.find(item => item.locale === i18n.language)?.name, myHeaderInfo?.alt?.find(item => item.id === +alt_id!)?.sub?.find(item => item.id === +sub_id!)?.translations.find(item => item.locale === i18n.language)?.name ],[myHeaderInfo,i18n.language])
-    const header = !(headerTranslatedNames.every(item => (item === undefined))) ? `${headerTranslatedNames[0]!.toLowerCase()} / ${headerTranslatedNames[1]!.toLowerCase()} / ${headerTranslatedNames[2]!.toLowerCase()}` : ''
+
+    const headerTranslatedNames = [myHeaderInfo?.translations.find(item => item.locale === language)?.name, myHeaderInfo?.alt.find(item => item.id === +alt_id!)?.translations.find(item => item.locale === language)?.name, myHeaderInfo?.alt?.find(item => item.id === +alt_id!)?.sub?.find(item => item.id === +sub_id!)?.translations.find(item => item.locale === language)?.name]
+    const header = `${headerTranslatedNames[0]?.toLowerCase()} | ${headerTranslatedNames[1]?.toLowerCase()} | ${headerTranslatedNames[2]?.toLowerCase()}`
 
     return <>
         <Head>
             <meta name="keywords" content={header}/>
 
             <title>
-                {header ? (header + ' | GEAD') : '...'}
+                {(header.toUpperCase() + ' | GEAD')}
             </title>
         </Head>
         <div className="custom-container py-4">
@@ -57,9 +57,14 @@ export async function getServerSideProps(context: any) {
 
     const data = await fetch(`https://admin.gead.az/api/content/${query.cat_id}/${query.alt_id}/${query.sub_id}`)
     const json = await data.json();
+
+    const category = await fetch(`https://admin.gead.az/api/categories`)
+    const categoryJson = await category.json();
+
     return {
         props: {
-            data: json
+            data: json,
+            category:categoryJson
         }
     };
 }

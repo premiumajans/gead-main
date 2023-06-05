@@ -11,6 +11,8 @@ import Head from "next/head";
 import React from "react";
 import {useTranslation} from "react-i18next";
 import CustomHeaderLineless from "@/Components/CustomHeaderLineless/CustomHeaderLineless";
+import {useSelector} from "react-redux";
+import {getLanguage} from "@/Store/Slices/General";
 
 export default function Home({data, link: {links}, news: {news}, writer: {writers}}: {
     data: { sliders: mainSliderInterface[] },
@@ -19,6 +21,7 @@ export default function Home({data, link: {links}, news: {news}, writer: {writer
     writer: { writers: contentItem[] }
 }) {
     const Slider = dynamic(() => import('react-slick'), {ssr: false})
+    const language = useSelector(getLanguage)
 
     const {t, i18n} = useTranslation('common')
 
@@ -48,7 +51,8 @@ export default function Home({data, link: {links}, news: {news}, writer: {writer
             <Head>
                 <meta name="keywords" content={'gead.az, GƏNCLƏRİN ELMİ ARAŞDIRMALARINA DƏSTƏK İctimai Birliyi'}/>
                 <title>
-                    {t('main-page') !== 'main-page' ? t('main-page') + ' | GEAD' : '...'}
+                    {t('main-page') !== 'main-page' ? t('main-page') + ' | GEAD' : 'GEAD'}
+
                 </title>
             </Head>
 
@@ -78,7 +82,7 @@ export default function Home({data, link: {links}, news: {news}, writer: {writer
                                         transform: 'translate(-50%, -50%)'
                                     }}
                                 >
-                                    {item.translations.find(item => item.locale === i18n.language)?.title}
+                                    {item.translations.find(item => item.locale === language)?.title}
                                 </div>
                             </div>
                         })

@@ -1,12 +1,11 @@
 import {useTranslation} from "react-i18next";
 import {useSelector} from "react-redux";
-import {getSettingState} from "@/Store/Slices/General";
+import {getLanguage, getSettingState} from "@/Store/Slices/General";
 import * as yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {usePostContactMutation} from "@/Store/Query/GeneralQuery";
 import Swal from "sweetalert2";
-import {Simulate} from "react-dom/test-utils";
 import Head from "next/head";
 import React from "react";
 
@@ -14,6 +13,7 @@ const Contact = () => {
     const {t, i18n} = useTranslation("common");
     const settings = useSelector(getSettingState);
     const [postData, {isLoading}] = usePostContactMutation()
+    const language = useSelector(getLanguage)
 
     let schema = yup.object().shape({
         name: yup
@@ -63,7 +63,7 @@ const Contact = () => {
             <Head>
                 <meta name="keywords" content={'gead.az, GƏNCLƏRİN ELMİ ARAŞDIRMALARINA DƏSTƏK İctimai Birliyi'}/>
                 <title>
-                    {t('contact-us') !== 'contact-us' ? t('contact-us') + ' | GEAD' : '...'}
+                    {t('contact-us') !== 'contact-us' ? t('contact-us') + ' | GEAD' : 'GEAD'}
                 </title>
             </Head>
             <div
@@ -254,7 +254,7 @@ const Contact = () => {
                                         ></i>{" "}
                                         <strong className="text-dark">{t("address")}:</strong>{" "}
                                         {
-                                            settings.find((el) => el.name == "address_" + i18n.language)
+                                            settings.find((el) => el.name == "address_" + language)
                                                 ?.link
                                         }
                                     </li>

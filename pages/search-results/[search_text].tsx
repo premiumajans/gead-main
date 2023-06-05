@@ -7,6 +7,8 @@ import {useTranslation} from "react-i18next";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
+import {useSelector} from "react-redux";
+import {getLanguage} from "@/Store/Slices/General";
 
 const Search_text = ({data: {result}}: { data: { result: searchItem[] } }) => {
     const inputRef = useRef<any>()
@@ -14,6 +16,7 @@ const Search_text = ({data: {result}}: { data: { result: searchItem[] } }) => {
     const {i18n, t} = useTranslation('common')
     const {query, push} = useRouter()
     const isArrayResult = Array.isArray(result)
+    const language = useSelector(getLanguage)
 
     useEffect(() => {
         setPagination(1)
@@ -38,7 +41,7 @@ const Search_text = ({data: {result}}: { data: { result: searchItem[] } }) => {
         <>
             <Head>
                 <title>
-                    {t('photo-gallery') !== 'photo-gallery' ? (isArrayResult ? result.length : 0 + t('search-result-1') + query.search_text + ' | GEAD') : '...'}
+                    {t('photo-gallery') !== 'photo-gallery' ? (isArrayResult ? result.length : 0 + t('search-result-1') + query.search_text + ' | GEAD') : 'GEAD'}
                 </title>
             </Head>
             <div role="main" className="main">
@@ -111,7 +114,7 @@ const Search_text = ({data: {result}}: { data: { result: searchItem[] } }) => {
                                         return <li key={item.id}>
                                             <div style={{display:'flex', alignItems:'center'}} className="post-info">
                                                 {item?.photo?.length > 0 &&  <Link
-                                                    href={`/content/${item.id}`}><Image style={{marginRight:'15px', objectFit: "cover"}} width={150} height={75} src={process.env["NEXT_PUBLIC_MAIN_PATH_WITHOUT_API"] + item.photo} alt={item?.translations.find(item => item.locale === i18n.language)?.name || 'img'}/></Link>}
+                                                    href={`/content/${item.id}`}><Image style={{marginRight:'15px', objectFit: "cover"}} width={150} height={75} src={process.env["NEXT_PUBLIC_MAIN_PATH_WITHOUT_API"] + item.photo} alt={item?.translations.find(item => item.locale === language)?.name || 'img'}/></Link>}
                                                 <div className="text_info">
                                                     <Link
                                                         href={`/content/${item.id}`}>{item.translations.find(item => item.locale === i18n?.language)?.name}</Link>
