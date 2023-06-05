@@ -1,6 +1,6 @@
 import {useTranslation} from "react-i18next";
 import {useSelector} from "react-redux";
-import {getLanguage, getSettingState} from "@/Store/Slices/General";
+import {getSettingState} from "@/Store/Slices/General";
 import * as yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
@@ -13,7 +13,6 @@ const Contact = () => {
     const {t, i18n} = useTranslation("common");
     const settings = useSelector(getSettingState);
     const [postData, {isLoading}] = usePostContactMutation()
-    const language = useSelector(getLanguage)
 
     let schema = yup.object().shape({
         name: yup
@@ -41,7 +40,6 @@ const Contact = () => {
         handleSubmit,
         register,
         formState: {errors},
-        setValue,
         reset
     } = useForm({resolver: yupResolver(schema), mode: "onChange"});
 
@@ -85,9 +83,7 @@ const Contact = () => {
                                 method="POST"
                                 noValidate={false}
                             >
-                                <div className="contact-form-success alert alert-success d-none mt-4">
-                                    <strong>Success!</strong> Your message has been sent to us.
-                                </div>
+
 
                                 <div className="contact-form-error alert alert-danger d-none mt-4">
                                     <strong>Error!</strong> There was an error sending your message.
@@ -254,7 +250,7 @@ const Contact = () => {
                                         ></i>{" "}
                                         <strong className="text-dark">{t("address")}:</strong>{" "}
                                         {
-                                            settings.find((el) => el.name == "address_" + language)
+                                            settings.find((el) => el.name == "address_" + i18n.language)
                                                 ?.link
                                         }
                                     </li>
@@ -264,7 +260,7 @@ const Contact = () => {
                                             className="fas fa-phone top-6"
                                         ></i>{" "}
                                         <strong className="text-dark">{t("phone")}:</strong>{" "}
-                                        {settings.find((el) => el.name == "phone")?.link}
+                                        <a style={{color: "#777"}} href={`tel:${settings.find((el) => el.name == "phone")?.link}`}>{settings.find((el) => el.name == "phone")?.link}</a>
                                     </li>
                                     <li>
                                         <i
@@ -272,13 +268,12 @@ const Contact = () => {
                                             className="fas fa-envelope top-6"
                                         ></i>{" "}
                                         <strong className="text-dark"> {t("email")}:</strong>
-                                        <a
+                                        <a style={{color: "#777"}}
                                             href={
                                                 "mailto:" +
                                                 settings.find((el) => el.name == "email")?.link
                                             }
-                                        ></a>
-                                        {' '}{settings.find((el) => el.name == "email")?.link}
+                                        > {settings.find((el) => el.name == "email")?.link}</a>
                                     </li>
                                 </ul>
                             </div>

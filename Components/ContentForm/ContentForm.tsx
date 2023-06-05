@@ -82,9 +82,7 @@ const ContentForm = () => {
                 <div className="row">
                     <div className="col">
                         <form onSubmit={handleSubmit(onSubmit)} className="contact-form form-with-icons">
-                            <div className="contact-form-success alert alert-success d-none mt-4">
-                                <strong>Success!</strong> Your message has been sent to us.
-                            </div>
+
 
                             <div className="contact-form-error alert alert-danger d-none mt-4">
                                 <strong>Error!</strong> There was an error sending your message.

@@ -13,12 +13,8 @@ import {useRouter} from "next/router";
 import Head from "next/head";
 import AlertComponent from "@/Components/AleryComponent/AlertComponent";
 import ContentForm from "@/Components/ContentForm/ContentForm";
-import {useSelector} from "react-redux";
-import {getLanguage} from "@/Store/Slices/General";
 
 const NewPage = ({data}: { data: { content: contentItem, related: contentItem[] } }) => {
-    const language = useSelector(getLanguage)
-
     const {query} = useRouter()
     const {i18n, t} = useTranslation('common')
     const {pdf, translations, view, name, photo, created_at, photos, register} = data.content
@@ -34,23 +30,24 @@ const NewPage = ({data}: { data: { content: contentItem, related: contentItem[] 
     const currentCategory: categoryItem | undefined = useMemo(() => {
         return categories?.categories?.find(item => item.id === +data.content.category_id)
     }, [categories])
-    const sub_id = currentCategory?.alt?.find(item => item.id === +data.content.alt_id)?.sub.find((item => item.id === +data.content.sub_id))?.translations.find(item => item.locale === language)?.name
+    // const sub_id = currentCategory?.alt?.find(item => item.id === +data.content.sub_id)?.sub.find((item => item.id === +data.content.sub_id))?.translations.find(item => item.locale === i18n.language)?.name
 
     useEffect(() => {
         setSession(JSON.parse(sessionStorage.getItem('sessionData')!))
     }, [])
 
-    const translatedName = useMemo(() => (translations?.find(item => item.locale === language)?.name), [translations, language])
+    const translatedName = translations?.find(item => item.locale === i18n.language)?.name
+
 
     return <>
         <Head>
             <meta name="keywords"
-                  content={`${currentCategory?.translations.find(item => item.locale === language)?.name}, ${currentCategory?.alt?.find(item => item.id === +data.content.alt_id)?.translations.find(item => item.locale === language)?.name}, ${sub_id !== undefined ? sub_id + ',' : ''}  ${translations?.find(item => item.locale === language)?.name.trim()}`}/>
+                  content={translatedName}/>
             <title>
                 {translatedName ? translatedName + ' | GEAD' : 'GEAD'}
             </title>
             <meta property="og:title" content={translatedName ? translatedName + ' | GEAD' : 'GEAD'}/>
-            <meta property="og:description" content={translations?.find(item => item.locale === language)?.content}/>
+            <meta property="og:description" content={translations?.find(item => item.locale === i18n.language)?.content}/>
             <meta property="og:image" content={   process.env.NEXT_PUBLIC_MAIN_PATH_WITHOUT_API! + photo}/>
             <meta property="og:url" content={ process.env.NEXT_PUBLIC_MAIN_PATH_WITHOUT_API + 'content/' + query.cat_id }/>
         </Head>
@@ -60,7 +57,7 @@ const NewPage = ({data}: { data: { content: contentItem, related: contentItem[] 
                 toggler={toggler}
                 sources={imgs?.map((el, index) => <Image style={{objectFit: 'contain'}} width={1000} height={1000}
                                                          key={Math.random()} src={el}
-                                                         alt={translations.find(item => item.locale === language)?.name || 'img'}/>)}
+                                                         alt={translations.find(item => item.locale === i18n.language)?.name || 'img'}/>)}
                 sourceIndex={slideIndex}
             />
             <div
@@ -72,7 +69,7 @@ const NewPage = ({data}: { data: { content: contentItem, related: contentItem[] 
                         <div className="container">
                             <div className="row">
                                 <div className="col-md-12 align-self-center p-static order-2 text-center"><h1
-                                    className="text-dark font-weight-bold text-8">{translations?.find(item => item.locale === language)?.name}</h1>
+                                    className="text-dark font-weight-bold text-8">{translations?.find(item => item.locale === i18n.language)?.name}</h1>
                                 </div>
                             </div>
                         </div>
@@ -85,13 +82,13 @@ const NewPage = ({data}: { data: { content: contentItem, related: contentItem[] 
                                         <div className="img-thumbnail border-0 p-0 d-block">
                                             <Image width={1000} height={1000} className="img-fluid border-radius-0"
                                                    src={process.env["NEXT_PUBLIC_MAIN_PATH_WITHOUT_API"] + photo}
-                                                   alt={translations.find(item => item.locale === language)?.name || 'img'}/>
+                                                   alt={translations.find(item => item.locale === i18n.language)?.name || 'img'}/>
                                         </div>
                                     </div> : ''}
 
 
                                     <div className="post-content ms-0">
-                                        {ReactHtmlParser(translations && translations?.find(item => item.locale === language)?.content || '')}
+                                        {ReactHtmlParser(translations && translations?.find(item => item.locale === i18n.language)?.content || '')}
                                     </div>
                                 </article>
 
@@ -120,7 +117,7 @@ const NewPage = ({data}: { data: { content: contentItem, related: contentItem[] 
                             process.env.NEXT_PUBLIC_MAIN_PATH_WITHOUT_API! +
                             el.photo
                         }
-                        alt={translations.find(item => item.locale === language)?.name || 'img'}
+                        alt={translations.find(item => item.locale === i18n.language)?.name || 'img'}
                     />
                     <span className="thumb-info-action">
                       <span className="thumb-info-action-icon">
@@ -176,7 +173,8 @@ const NewPage = ({data}: { data: { content: contentItem, related: contentItem[] 
 };
 
 export async function getServerSideProps(context: any) {
-    const {query} = context
+    const {query,locale} = context
+
 
     const data = await fetch(`https://admin.gead.az/api/content/${query.cat_id}`);
 

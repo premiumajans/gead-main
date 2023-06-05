@@ -15,12 +15,13 @@ import {categoryItem} from "@/interfaces/generalTypesInterfaces";
 import HeaderWraper from "@/Components/Header/Header";
 import Footer from "@/Components/Footer/Footer";
 import {useTranslation} from "react-i18next";
+import {useRouter} from "next/router";
+import  '../i18n'
 
 function App({Component, pageProps}: AppProps<{ categories: categoryItem[] }>) {
-    const language = useSelector(getLanguage)
     const {data} = useSettingsQuery('');
     const {i18n,t} = useTranslation()
-
+    const router = useRouter();
     const dispatch = useDispatch();
     useEffect(() => {
         AOS.init();
@@ -30,19 +31,6 @@ function App({Component, pageProps}: AppProps<{ categories: categoryItem[] }>) {
     }, [data]);
 
 
-    useEffect(() => {
-        const load = async () => {
-            await i18n.changeLanguage(language);
-        };
-        load();
-    },[])
-
-
-
-
-    if(!t) {
-        return <></>
-    }
 
     return <>
         <StrictMode>
@@ -58,7 +46,8 @@ function App({Component, pageProps}: AppProps<{ categories: categoryItem[] }>) {
 const makeStore = () => store;
 export const wrapper = createWrapper(makeStore);
 
-export default wrapper.withRedux(appWithI18Next(App, ni18nConfig));
+// export default wrapper.withRedux(appWithI18Next(App, ni18nConfig));
+export default wrapper.withRedux(App);
 
 export async function getServerSideProps(locale: any) {
 

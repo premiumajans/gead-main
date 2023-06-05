@@ -7,8 +7,6 @@ import ModalForm from "@/Components/ModalForm/ModalForm";
 import Image from "next/image";
 import Head from "next/head";
 import AlertComponent from "@/Components/AleryComponent/AlertComponent";
-import {useSelector} from "react-redux";
-import {getLanguage} from "@/Store/Slices/General";
 import {useRouter} from "next/router";
 
 const WritePage = ({data: {writers, relatedItems}}: {
@@ -17,18 +15,18 @@ const WritePage = ({data: {writers, relatedItems}}: {
     const {query} = useRouter()
     const {i18n, t} = useTranslation('common')
     const {pdf, translations, view, name, photo, created_at} = writers
-    const language = useSelector(getLanguage)
 
-    const translatedName = useMemo(() => translations?.find(item => item.locale === language)?.name,[language, translations])
+    const translatedName = translations?.find(item => item.locale === i18n.language)?.name
+
     return <>
         <Head>
-            <meta name="keywords" content={translations?.find(item => item.locale === language)?.name}/>
+            <meta name="keywords" content={translations?.find(item => item.locale === i18n.language)?.name}/>
             <title>
                 {translations ? translatedName + ' | GEAD' : 'GEAD'}
             </title>
 
             <meta property="og:title" content={translatedName ? translatedName + ' | GEAD' : 'GEAD'}/>
-            <meta property="og:description" content={translations?.find(item => item.locale === language)?.content}/>
+            <meta property="og:description" content={translations?.find(item => item.locale === i18n.language)?.description}/>
             <meta property="og:image" content={   process.env.NEXT_PUBLIC_MAIN_PATH_WITHOUT_API! + photo}/>
             <meta property="og:url" content={ process.env.NEXT_PUBLIC_MAIN_PATH_WITHOUT_API + 'writer/' + query.writerId }/>
         </Head>
@@ -42,7 +40,7 @@ const WritePage = ({data: {writers, relatedItems}}: {
                         <div className="container">
                             <div className="row">
                                 <div className="col-md-12 align-self-center p-static order-2 text-center"><h1
-                                    className="text-dark font-weight-bold text-8">{translations?.find(item => item.locale === language)?.name}</h1>
+                                    className="text-dark font-weight-bold text-8">{translations?.find(item => item.locale === i18n.language)?.name}</h1>
                                 </div>
                             </div>
                         </div>
@@ -55,13 +53,13 @@ const WritePage = ({data: {writers, relatedItems}}: {
                                         <div className="img-thumbnail border-0 p-0 d-block">
                                             <Image width={250} height={250} className="img-fluid border-radius-0"
                                                    src={process.env["NEXT_PUBLIC_MAIN_PATH_WITHOUT_API"] + photo}
-                                                   alt={translations?.find(item => item.locale === language)?.name || 'img'}/>
+                                                   alt={translations?.find(item => item.locale === i18n.language)?.name || 'img'}/>
                                         </div>
                                     </div> : ''}
 
 
                                     <div className="post-content ms-0">
-                                    {ReactHtmlParser(translations && translations?.find(item => item.locale === language)?.description!) || ""}
+                                    {ReactHtmlParser(translations && translations?.find(item => item.locale === i18n.language)?.description!) || ""}
                                     </div>
                                 </article>
 

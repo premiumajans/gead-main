@@ -6,20 +6,17 @@ import CustomHeader from "@/Components/CustomHeader/CustomHeader";
 import {galleryInterface} from "@/interfaces/generalTypesInterfaces";
 import Head from "next/head";
 import AlertComponent from "@/Components/AleryComponent/AlertComponent";
-import {useSelector} from "react-redux";
-import {getLanguage} from "@/Store/Slices/General";
+
 
 const GalleryPhotos = ({gallery:{photos,translations}}:{gallery:galleryInterface}) => {
-    const language = useSelector(getLanguage)
     const [toggler, setToggler] = useState(false);
     const [slideIndex, setSlideIndex] = useState(0);
     const {i18n,t} = useTranslation('common')
-
-    const translatedName = useMemo(() => translations.find(el => el.locale == language)?.name,[language, translations])
+    const translatedName = useMemo(() => translations.find(el => el.locale == i18n.language)?.name,[i18n.language, translations])
     return (
         <>
             <Head>
-                <meta name="keywords" content={translations.find(el => el.locale == language)?.name}/>
+                <meta name="keywords" content={translations.find(el => el.locale == i18n.language)?.name}/>
                 <title>
                     {translatedName ? translatedName + ' | GEAD' : 'GEAD'}
                 </title>
@@ -34,7 +31,7 @@ const GalleryPhotos = ({gallery:{photos,translations}}:{gallery:galleryInterface
                 />
                 {photos?.length > 0 ? <>
                     <CustomHeader>
-                        {translations.find(el => el.locale == language)?.name}
+                        {translations.find(el => el.locale == i18n.language)?.name}
                     </CustomHeader>
                     <div>
                         <div className={'row my-4 blogs'}>
@@ -64,7 +61,7 @@ const GalleryPhotos = ({gallery:{photos,translations}}:{gallery:galleryInterface
                             process.env.NEXT_PUBLIC_MAIN_PATH_WITHOUT_API! +
                             el.photo
                         }
-                        alt={translations.find(el => el.locale == language)?.name || 'img'}
+                        alt={translations.find(el => el.locale == i18n.language)?.name || 'img'}
                     />
                     <span className="thumb-info-action">
                       <span className="thumb-info-action-icon">

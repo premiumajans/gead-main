@@ -4,13 +4,10 @@ import {aboutResponse} from "@/interfaces/generalTypesInterfaces";
 import Image from "next/image";
 import Head from "next/head";
 import React from "react";
-import {useSelector} from "react-redux";
-import {getLanguage} from "@/Store/Slices/General";
+
 
 const About = ({data}: { data: aboutResponse[] }) => {
     const {i18n,t} = useTranslation('common')
-    const language = useSelector(getLanguage)
-
     return (
         <>
             <Head>
@@ -22,7 +19,7 @@ const About = ({data}: { data: aboutResponse[] }) => {
             <div style={{minHeight: '60vh'}} role="main" className="main">
                 <div className="custom-container pt-5">
                     {Array.isArray(data) ? data?.map(item => {
-                        const currentData = item.translations.find(elem => elem.locale == language)
+                        const currentData = item.translations.find(elem => elem.locale == i18n.language)
                         return <div key={item.id} className="row py-4 mb-2">
                             <div className="col-md-7 order-2">
                                 <div className="overflow-hidden">
@@ -57,7 +54,7 @@ const About = ({data}: { data: aboutResponse[] }) => {
                                     style={{width: "450px", height: '450px', objectFit: "cover"}}
                                     src={process.env.NEXT_PUBLIC_MAIN_PATH_WITHOUT_API + item.photo}
                                     className="img-fluid mb-2"
-                                    alt={item?.translations.find((item => item.locale === language))?.title || 'img'}
+                                    alt={item?.translations.find((item => item.locale === i18n.language))?.title || 'img'}
                                 />
                             </div> : ''}
                             <hr

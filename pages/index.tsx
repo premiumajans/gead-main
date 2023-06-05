@@ -11,8 +11,7 @@ import Head from "next/head";
 import React from "react";
 import {useTranslation} from "react-i18next";
 import CustomHeaderLineless from "@/Components/CustomHeaderLineless/CustomHeaderLineless";
-import {useSelector} from "react-redux";
-import {getLanguage} from "@/Store/Slices/General";
+import {useRouter} from "next/router";
 
 export default function Home({data, link: {links}, news: {news}, writer: {writers}}: {
     data: { sliders: mainSliderInterface[] },
@@ -21,8 +20,7 @@ export default function Home({data, link: {links}, news: {news}, writer: {writer
     writer: { writers: contentItem[] }
 }) {
     const Slider = dynamic(() => import('react-slick'), {ssr: false})
-    const language = useSelector(getLanguage)
-
+    const  {locale:language} = useRouter()
     const {t, i18n} = useTranslation('common')
 
     const settings = {

@@ -8,7 +8,6 @@ import {getLanguage, getSettingState, setLanguage} from "@/Store/Slices/General"
 import {useRouter} from "next/router";
 
 const HeaderWraper = ({children}: PropsWithChildren) => {
-    const language = useSelector(getLanguage)
 
     const dispatch = useDispatch()
     const [search, setSearch] = useState(false)
@@ -188,17 +187,17 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                     src="/img/blank.gif"
                                                                     className={
                                                                         "flag " +
-                                                                        (language === "en"
+                                                                        (i18n.language === "en"
                                                                             ? "flag-us"
-                                                                            : "flag-" + language)
+                                                                            : "flag-" + i18n.language)
                                                                     }
                                                                     alt="English"
                                                                 />{" "}
-                                                                {language == "en"
+                                                                {i18n.language == "en"
                                                                     ? "English"
-                                                                    : language == "az"
+                                                                    : i18n.language == "az"
                                                                         ? "Azərbaycan"
-                                                                        : language == "ru"
+                                                                        : i18n.language == "ru"
                                                                             ? "Русский"
                                                                             : ""}{" "}
                                                                 <i className="fas fa-angle-down"></i>{" "}
@@ -323,7 +322,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                         {" "}
                                                                         {
                                                                             item.translations.find(
-                                                                                (el) => el.locale == language
+                                                                                (el) => el.locale == i18n.language
                                                                             )?.name
                                                                         }
                                                                         <i className="fas fa-chevron-down"></i>
@@ -390,7 +389,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                                         {
                                                                                             alt.translations.find(
                                                                                                 (el) =>
-                                                                                                    el.locale == language
+                                                                                                    el.locale == i18n.language
                                                                                             )?.name
                                                                                         }
                                                                                     </a> : <Link onClick={() => {
@@ -403,7 +402,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                                         {
                                                                                             alt.translations.find(
                                                                                                 (el) =>
-                                                                                                    el.locale == language
+                                                                                                    el.locale == i18n.language
                                                                                             )?.name
                                                                                         }
                                                                                     </Link>}
@@ -423,7 +422,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                                                             sub.translations.find(
                                                                                                                 (el) =>
                                                                                                                     el.locale ==
-                                                                                                                    language
+                                                                                                                    i18n.language
                                                                                                             )?.name
                                                                                                         }
                                                                                                     </Link>
@@ -471,17 +470,17 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                 src="/img/blank.gif"
                                                                 className={
                                                                     "flag " +
-                                                                    (language === "en"
+                                                                    (i18n.language === "en"
                                                                         ? "flag-us"
-                                                                        : "flag-" + language)
+                                                                        : "flag-" + i18n.language)
                                                                 }
                                                                 alt="English"
                                                             />{" "}
-                                                            {language == "en"
+                                                            {i18n.language == "en"
                                                                 ? "English"
-                                                                : language == "az"
+                                                                : i18n.language == "az"
                                                                     ? "Azərbaycan"
-                                                                    : language == "ru"
+                                                                    : i18n.language == "ru"
                                                                         ? "Русский"
                                                                         : ""}{" "}
                                                             <i className="fas fa-angle-down"></i>{" "}

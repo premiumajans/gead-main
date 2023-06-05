@@ -1,23 +1,19 @@
 import CardTopImg from "@/Components/Card/CardTopImg";
 import {useTranslation} from "react-i18next";
-import {useCategoriesQuery} from "@/Store/Query/GeneralQuery";
 import {categoryItem, contentItem} from "@/interfaces/generalTypesInterfaces";
 import CustomHeader from "@/Components/CustomHeader/CustomHeader";
-import React, {useMemo} from "react";
+import React from "react";
 import {useRouter} from "next/router";
 import Head from "next/head";
 import Image from "next/image";
-import {useSelector} from "react-redux";
-import {getLanguage} from "@/Store/Slices/General";
 
 const ContentPage = ({data,category:{categories}}:{data:{content:contentItem[]}, category:{categories:categoryItem[]} }) => {
     const {query: {cat_id, alt_id}} = useRouter()
     const {t, i18n} = useTranslation('common')
-    const language = useSelector(getLanguage)
 
     const myHeaderInfo = categories.find((item => item.id === +cat_id!))
 
-    const header = `${myHeaderInfo?.translations.find(item => item.locale === language)?.name.toLowerCase()} | ${myHeaderInfo?.alt.find(item => item.id === +alt_id!)?.translations.find(item => item.locale === language)?.name.toLowerCase()}`
+    const header = `${myHeaderInfo?.translations.find(item => item.locale === i18n.language)?.name.toLowerCase()} | ${myHeaderInfo?.alt.find(item => item.id === +alt_id!)?.translations.find(item => item.locale === i18n.language)?.name.toLowerCase()}`
 
 
     return <>
