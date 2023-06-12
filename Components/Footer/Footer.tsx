@@ -1,9 +1,13 @@
 import {useTranslation} from "react-i18next";
 import Image from "next/image";
 import Link from "next/link";
+import {useSelector} from "react-redux";
+import {getSettingState} from "@/Store/Slices/General";
+import React from "react";
 
 const Footer = () => {
     const {t} = useTranslation("common");
+    const settings = useSelector(getSettingState);
     return (
         <>
             <footer id="footer">
@@ -30,7 +34,9 @@ const Footer = () => {
                                 </Link>
                             </div>
                             <div style={{fontSize: '1.2rem'}}
-                                 className="copyright col-lg-7 d-flex align-items-center justify-content-center justify-content-lg-start mb-4 mb-lg-0">
+                                 className="copyright col-lg-7 d-flex flex-column align-items-start justify-content-center  mb-4 mb-lg-0">
+                                <div><i className="fas fa-phone top-6" style={{fontSize: 13}}></i> <strong style={{color:"white"}}>{t("phone")}:</strong> <a style={{color: "#777"}} href={`tel:${settings.find((el) => el.name == "phone")?.link}`}>{settings.find((el) => el.name == "phone")?.link}</a>
+                                </div>
                                 <p>
                                     © {t('copyright')} {new Date().getFullYear()}. {t("rights")}
                                 </p>

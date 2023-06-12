@@ -15,7 +15,8 @@ i18n
     // init i18next
     // for all options read: https://www.i18next.com/overview/configuration-options
     .init({
-        debug: true,
+        // lng,
+        supportedLngs:['az','en','ru'],
         fallbackLng: "az",
         interpolation: {
             escapeValue: false // not needed for react as it escapes by default
@@ -23,7 +24,7 @@ i18n
 
         react: {
             useSuspense: false
-        }
+        },
     });
 
 export default i18n;
