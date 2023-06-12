@@ -34,9 +34,7 @@ const Footer = () => {
                                 </Link>
                             </div>
                             <div style={{fontSize: '1.2rem'}}
-                                 className="copyright col-lg-7 d-flex flex-column align-items-start justify-content-center  mb-4 mb-lg-0">
-                                <div><i className="fas fa-phone top-6" style={{fontSize: 13}}></i> <strong style={{color:"white"}}>{t("phone")}:</strong> <a style={{color: "#777"}} href={`tel:${settings.find((el) => el.name == "phone")?.link}`}>{settings.find((el) => el.name == "phone")?.link}</a>
-                                </div>
+                                 className="copyright col-lg-7 d-flex  align-items-center justify-content-start    mb-4 mb-lg-0">
                                 <p>
                                     © {t('copyright')} {new Date().getFullYear()}. {t("rights")}
                                 </p>
@@ -53,6 +51,8 @@ const Footer = () => {
                                     </ul>
                                 </nav>
                             </div>
+                        </div>
+                        <div style={{textAlign:'right'}}><i className="fas fa-phone top-6" style={{fontSize: 13}}></i> <strong style={{color:"white"}}>{t("phone")}:</strong> <a style={{color: "#777"}} href={`tel:${settings.find((el) => el.name == "phone")?.link}`}>{settings.find((el) => el.name == "phone")?.link}</a>
                         </div>
                     </div>
                 </div>

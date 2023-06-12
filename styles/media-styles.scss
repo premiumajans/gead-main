@@ -54,6 +54,9 @@
 
 
 @media (max-width: 991px) {
+  #footer .copyright {
+    justify-content: center !important;
+  }
   .search_wraper {
     display: block;
   }
@@ -106,7 +109,7 @@
     font-size: 1rem !important;
   }
   #footer .copyright {
-    font-size: 1rem !important;
+    font-size: 0.8rem !important;
   }
 
   .header-logo {
