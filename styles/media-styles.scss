@@ -107,6 +107,11 @@
 
 
 @media (max-width: 576px) {
+  .slick-slide {
+    img {
+      height: 40vh !important;
+    }
+  }
   .about-title {
     font-size: 15px;
   }
