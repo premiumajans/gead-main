@@ -54,6 +54,9 @@
 
 
 @media (max-width: 991px) {
+  .about-title {
+    font-size: 30px;
+  }
   #footer .copyright {
     justify-content: center !important;
   }
@@ -94,6 +97,9 @@
 }
 
 @media (max-width: 768px) {
+  .about-title {
+    font-size: 25px;
+  }
   .blogs {
     justify-content: center;
   }
@@ -101,6 +107,9 @@
 
 
 @media (max-width: 576px) {
+  .about-title {
+    font-size: 15px;
+  }
   .badge {
     text-align: left;
     font-size: 16px;

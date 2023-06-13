@@ -17,17 +17,17 @@ const About = ({data}: { data: aboutResponse[] }) => {
                 </title>
             </Head>
             <div style={{minHeight: '60vh'}} role="main" className="main">
-                <div className="custom-container pt-5">
+                <div className="custom-container mt-5">
                     {Array.isArray(data) ? data?.map(item => {
                         const currentData = item.translations.find(elem => elem.locale == i18n.language)
                         return <div key={item.id} className="row py-4 mb-2">
-                            <div className="col-md-7 order-2">
+                            <div className={"order-2" + (item.photo?.length > 0 ? 'col-md-7' : 'col-md-12')}>
                                 <div className="overflow-hidden">
                                     <h2
-                                        className="text-color-dark font-weight-bold text-12 mb-3 pt-0 mt-0 appear-animation animated maskUp appear-animation-visible"
+                                        className=" about-title text-color-dark font-weight-bold text-lg-10 mb-3 pt-0 mt-0 appear-animation animated maskUp appear-animation-visible"
                                         data-appear-animation="maskUp"
                                         data-appear-animation-delay="300"
-                                        style={{animationDelay: "300ms"}}
+                                        style={{animationDelay: "300ms", lineHeight:'normal'}}
                                     >
                                         {currentData?.title}
                                     </h2>
