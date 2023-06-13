@@ -64,7 +64,7 @@ export default function Home({data, link: {links}, news: {news}, writer: {writer
                         {Array.isArray(data?.sliders) && data?.sliders.length! > 0 && data?.sliders.map((item, index) => {
                             return <div key={item.id}>
                                 <Image width={1500} height={1500}
-                                       style={{width: '100%', height: '75vh', objectFit: 'cover'}}
+                                       style={{width: '100%', height: '75vh', objectFit: 'fill'}}
                                        src={process.env["NEXT_PUBLIC_MAIN_PATH_WITHOUT_API"] + item.photo}
                                        alt={item.alt}/>
                                 <div
