@@ -52,7 +52,7 @@ const Footer = () => {
                                 </nav>
                             </div>
                         </div>
-                        <div style={{textAlign:'right'}}><i className="fas fa-phone top-6" style={{fontSize: 13}}></i> <strong style={{color:"white"}}>{t("phone")}:</strong> <a style={{color: "#777"}} href={`tel:${settings.find((el) => el.name == "phone")?.link}`}>{settings.find((el) => el.name == "phone")?.link}</a>
+                        <div style={{textAlign:'right'}}><i className="fas fa-phone top-6" style={{fontSize: 13}}></i> <strong style={{color:"white"}}>{t("phone")}:</strong> <a style={{color: "#777"}} href={`tel:${settings?.find((el) => el.name == "phone")?.link}`}>{settings?.find((el) => el.name == "phone")?.link}</a>
                         </div>
                     </div>
                 </div>

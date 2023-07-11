@@ -321,9 +321,11 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                     >
                                                                         {" "}
                                                                         {
-                                                                            item.translations.find(
+                                                                            i18n.language !== 'az' ? item.translations.find(
                                                                                 (el) => el.locale == i18n.language
-                                                                            )?.name
+                                                                            )?.name : item.translations.find(
+                                                                                (el) => el.locale == i18n.language
+                                                                            )?.name.replace(/i/g, 'İ')
                                                                         }
                                                                         <i className="fas fa-chevron-down"></i>
                                                                     </a>
