@@ -47,9 +47,11 @@ const NewPage = ({data}: { data: { content: contentItem, related: contentItem[] 
                 {translatedName ? translatedName + ' | GEAD' : 'GEAD'}
             </title>
             <meta property="og:title" content={translatedName ? translatedName + ' | GEAD' : 'GEAD'}/>
-            <meta property="og:description" content={translations?.find(item => item.locale === i18n.language)?.content}/>
-            <meta property="og:image" content={   process.env.NEXT_PUBLIC_MAIN_PATH_WITHOUT_API! + photo}/>
-            <meta property="og:url" content={ process.env.NEXT_PUBLIC_MAIN_PATH_WITHOUT_API + 'content/' + query.cat_id }/>
+            <meta property="og:description"
+                  content={translations?.find(item => item.locale === i18n.language)?.content}/>
+            <meta property="og:image" content={process.env.NEXT_PUBLIC_MAIN_PATH_WITHOUT_API! + photo}/>
+            <meta property="og:url"
+                  content={process.env.NEXT_PUBLIC_MAIN_PATH_WITHOUT_API + 'content/' + query.cat_id}/>
         </Head>
         <div role="main" className="main">
             <ModalForm/>
@@ -80,8 +82,10 @@ const NewPage = ({data}: { data: { content: contentItem, related: contentItem[] 
                                 <article className="post post-large blog-single-post border-0 m-0 p-0">
                                     {photo?.length > 0 ? <div className="post-image ms-0">
                                         <div className="img-thumbnail border-0 p-0 d-block">
-                                            <Image style={{    maxHeight: "600px",
-                                                objectFit: 'cover'}} width={1000} height={1000} className="img-fluid border-radius-0"
+                                            <Image style={{
+                                                maxHeight: "500px",
+                                                objectFit: 'contain'
+                                            }} width={1000} height={1000} className="img-fluid border-radius-0"
                                                    src={process.env["NEXT_PUBLIC_MAIN_PATH_WITHOUT_API"] + photo}
                                                    alt={translations.find(item => item.locale === i18n.language)?.name || 'img'}/>
                                         </div>
@@ -174,7 +178,7 @@ const NewPage = ({data}: { data: { content: contentItem, related: contentItem[] 
 };
 
 export async function getServerSideProps(context: any) {
-    const {query,locale} = context
+    const {query, locale} = context
 
 
     const data = await fetch(`https://admin.gead.az/api/content/${query.cat_id}`);

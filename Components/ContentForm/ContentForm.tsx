@@ -2,14 +2,14 @@ import * as yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useTranslation} from "react-i18next";
-import React from "react";
+import React, {useState} from "react";
 import {useRouter} from "next/router";
 import Swal from "sweetalert2";
 
 const ContentForm = () => {
     const {query} = useRouter()
     const {t} = useTranslation('common')
-
+    const [loading, setLoading] = useState(false)
 
     let schema = yup.object().shape({
         name: yup
@@ -51,6 +51,7 @@ const ContentForm = () => {
 
 
     const onSubmit = async (data: any) => {
+        setLoading(true)
         fetch(process.env["NEXT_PUBLIC_MAIN_PATH"] + 'content/' + query.cat_id + '/register',{
             body:JSON.stringify(data),
             method:'POST',

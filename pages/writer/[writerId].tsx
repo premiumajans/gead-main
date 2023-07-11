@@ -51,8 +51,8 @@ const WritePage = ({data: {writers, relatedItems}}: {
                                 <article className="post post-large blog-single-post border-0 m-0 p-0">
                                     {photo?.length > 0 ? <div className="post-image ms-0">
                                         <div className="img-thumbnail border-0 p-0 d-block">
-                                            <Image style={{    maxHeight: "600px",
-                                                objectFit: 'cover'}} width={1000} height={1000} className="img-fluid border-radius-0"
+                                            <Image style={{    maxHeight: "500px",
+                                                objectFit: 'contain'}} width={1000} height={1000} className="img-fluid border-radius-0"
                                                    src={process.env["NEXT_PUBLIC_MAIN_PATH_WITHOUT_API"] + photo}
                                                    alt={translations?.find(item => item.locale === i18n.language)?.name || 'img'}/>
                                         </div>
