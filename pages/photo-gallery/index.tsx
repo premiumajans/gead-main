@@ -1,10 +1,11 @@
 import CardForGallery from "@/Components/Card/CardForGallery";
 import {galleryInterface} from "@/interfaces/generalTypesInterfaces";
 import CustomHeader from "@/Components/CustomHeader/CustomHeader";
-import {useTranslation} from "react-i18next";
+import {useTranslation} from "next-i18next";
 import Head from "next/head";
 import React from "react";
 import AlertComponent from "@/Components/AleryComponent/AlertComponent";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 
 const PhotoGalery = ({data}: { data: galleryInterface[] }) => {
     const {t} = useTranslation('common')
@@ -40,7 +41,9 @@ export async function getServerSideProps(context: any) {
     const json = await data.json();
     return {
         props: {
-            data: json?.gallery
+            data: json?.gallery,
+            ...(await serverSideTranslations(context.locale, ["common"])),
+
         }
     };
 }

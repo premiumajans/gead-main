@@ -4,7 +4,7 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 import dynamic from "next/dynamic";
 import {contentItem} from "@/interfaces/generalTypesInterfaces";
 import CustomHeader from "@/Components/CustomHeader/CustomHeader";
-import {useTranslation} from "react-i18next";
+import {useTranslation} from "next-i18next";
 import {useRouter} from "next/router";
 import CustomHeaderLineless from "@/Components/CustomHeaderLineless/CustomHeaderLineless";
 import React from "react";

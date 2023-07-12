@@ -3,7 +3,7 @@ import FsLightbox from "fslightbox-react";
 import React, {useEffect, useMemo, useState} from "react";
 import Image from "next/image";
 import ReactHtmlParser from 'react-html-parser'
-import {useTranslation} from "react-i18next";
+import {useTranslation} from "next-i18next";
 import {categoryItem, contentItem} from "@/interfaces/generalTypesInterfaces";
 import {transformDate} from "@/utils/transformDate";
 import ModalForm from "@/Components/ModalForm/ModalForm";
@@ -13,6 +13,7 @@ import {useRouter} from "next/router";
 import Head from "next/head";
 import AlertComponent from "@/Components/AleryComponent/AlertComponent";
 import ContentForm from "@/Components/ContentForm/ContentForm";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 
 const NewPage = ({data}: { data: { content: contentItem, related: contentItem[] } }) => {
     const {query} = useRouter()
@@ -186,7 +187,9 @@ export async function getServerSideProps(context: any) {
     const json = await data.json();
     return {
         props: {
-            data: json
+            data: json,
+            ...(await serverSideTranslations(context.locale, ["common"])),
+
         }
     };
 }

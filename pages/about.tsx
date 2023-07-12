@@ -1,9 +1,10 @@
-import {useTranslation} from "react-i18next";
+import {useTranslation} from "next-i18next";
 import ReactHtmlParser from 'react-html-parser';
 import {aboutResponse} from "@/interfaces/generalTypesInterfaces";
 import Image from "next/image";
 import Head from "next/head";
 import React from "react";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 
 
 const About = ({data}: { data: aboutResponse[] }) => {
@@ -82,7 +83,8 @@ export async function getServerSideProps(context: any) {
     const json = await data.json();
     return {
         props: {
-            data: json?.about
+            data: json?.about,
+            ...(await serverSideTranslations(context.locale, ["common"])),
         }
     };
 }

@@ -3,10 +3,11 @@ import React, {useEffect, useRef, useState} from "react";
 import {useRouter} from "next/router";
 import {searchItem} from "@/interfaces/generalTypesInterfaces";
 import {transformDate} from "@/utils/transformDate";
-import {useTranslation} from "react-i18next";
+import {useTranslation} from "next-i18next";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 
 
 const Search_text = ({data: {result}}: { data: { result: searchItem[] } }) => {
@@ -166,7 +167,9 @@ export function getServerSideProps(context: any) {
             const data = await res.json()
             return {
                 props: {
-                    data: data
+                    data: data,
+                    ...(await serverSideTranslations(context.locale, ["common"])),
+
                 }
             }
         })

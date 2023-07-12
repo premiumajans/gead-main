@@ -1,18 +1,16 @@
 import Image from "next/image";
-import {PropsWithChildren, SetStateAction, useEffect, useRef, useState} from "react";
+import {PropsWithChildren, useEffect, useRef, useState} from "react";
 import Link from "next/link";
-import {useTranslation} from "react-i18next";
+import {useTranslation} from "next-i18next";
 import {useCategoriesQuery} from "@/Store/Query/GeneralQuery";
-import {useDispatch, useSelector} from "react-redux";
-import {getLanguage, getSettingState, setLanguage} from "@/Store/Slices/General";
+import {useSelector} from "react-redux";
+import {getSettingState} from "@/Store/Slices/General";
 import {useRouter} from "next/router";
 
 const HeaderWraper = ({children}: PropsWithChildren) => {
-
-    const dispatch = useDispatch()
     const [search, setSearch] = useState(false)
     const [menu, setMenu] = useState(false)
-    const {push} = useRouter()
+    const {push, asPath, pathname} = useRouter()
     const {i18n, t} = useTranslation("common");
     const {data, isLoading} = useCategoriesQuery('');
     const settings = useSelector(getSettingState);
@@ -33,7 +31,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
 
     const openMobileItem = (i: number) => {
         if (window.screen.width < 992) {
-            const currentArray:boolean[] = [...catItems]
+            const currentArray: boolean[] = [...catItems]
             currentArray[i] = !currentArray[i]
             setCatItems([...currentArray])
         }
@@ -61,6 +59,10 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
             // document.querySelector('.scroll-to-top ')!.remove()
         }
     })
+
+    const handleChangeLanguage = (locale) => {
+        push(pathname, asPath, {locale});
+    };
 
     return (
         <>
@@ -209,11 +211,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                 {" "}
                                                                 <a
                                                                     onClick={() => {
-                                                                        i18n.changeLanguage("az")
-                                                                            .then(() => {
-                                                                                dispatch(setLanguage('az'))
-                                                                            })
-
+                                                                        handleChangeLanguage('az')
                                                                     }}
                                                                     className="dropdown-item"
                                                                     href="#"
@@ -229,9 +227,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                 </a>{" "}
                                                                 <a
                                                                     onClick={() => {
-                                                                        i18n.changeLanguage("en").then(() => {
-                                                                            dispatch(setLanguage('en'))
-                                                                        })
+                                                                        handleChangeLanguage('en')
 
                                                                     }}
                                                                     className="dropdown-item"
@@ -248,11 +244,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                                 </a>{" "}
                                                                 <a
                                                                     onClick={() => {
-                                                                        i18n.changeLanguage("ru")
-                                                                            .then(() => {
-                                                                                dispatch(setLanguage('ru'))
-                                                                            })
-
+                                                                        handleChangeLanguage('ru')
                                                                     }}
                                                                     className="dropdown-item"
                                                                     href="#"
@@ -488,17 +480,15 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                             <i className="fas fa-angle-down"></i>{" "}
                                                         </a>{" "}
                                                         <div
-                                                            style={{width:'min-content'}}
+                                                            style={{width: 'min-content'}}
                                                             className="dropdown-menu"
                                                             aria-labelledby="dropdownLanguage"
                                                         >
                                                             {" "}
                                                             <a
                                                                 onClick={() => {
-                                                                    i18n.changeLanguage("az")
-                                                                        .then(() => {
-                                                                            dispatch(setLanguage('az'))
-                                                                        })
+
+                                                                    handleChangeLanguage('az')
 
                                                                 }}
                                                                 className="dropdown-item"
@@ -515,10 +505,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                             </a>{" "}
                                                             <a
                                                                 onClick={() => {
-                                                                    i18n.changeLanguage("en")
-                                                                        .then(res => {
-                                                                            dispatch(setLanguage('en'))
-                                                                        })
+                                                                    handleChangeLanguage('en')
 
                                                                 }}
                                                                 className="dropdown-item"
@@ -535,10 +522,7 @@ const HeaderWraper = ({children}: PropsWithChildren) => {
                                                             </a>{" "}
                                                             <a
                                                                 onClick={() => {
-                                                                    i18n.changeLanguage("ru")
-                                                                        .then(() => {
-                                                                            dispatch(setLanguage('ru'))
-                                                                        })
+                                                                    handleChangeLanguage('ru')
 
                                                                 }}
                                                                 className="dropdown-item"

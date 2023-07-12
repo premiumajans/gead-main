@@ -1,5 +1,5 @@
 import React from "react";
-import {useTranslation} from "react-i18next";
+import {useTranslation} from "next-i18next";
 import CustomHeader from "@/Components/CustomHeader/CustomHeader";
 import {videoItem} from "@/interfaces/generalTypesInterfaces";
 import Head from "next/head";

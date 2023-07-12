@@ -1,11 +1,12 @@
 import FsLightbox from "fslightbox-react";
 import Image from "next/image";
 import React, {useMemo, useState} from "react";
-import {useTranslation} from "react-i18next";
+import {useTranslation} from "next-i18next";
 import CustomHeader from "@/Components/CustomHeader/CustomHeader";
 import {galleryInterface} from "@/interfaces/generalTypesInterfaces";
 import Head from "next/head";
 import AlertComponent from "@/Components/AleryComponent/AlertComponent";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 
 
 const GalleryPhotos = ({gallery:{photos,translations}}:{gallery:galleryInterface}) => {
@@ -90,7 +91,9 @@ export async function getServerSideProps(context: any) {
     const json = await data.json();
     return {
         props: {
-            gallery: json?.gallery
+            gallery: json?.gallery,
+            ...(await serverSideTranslations(context.locale, ["common"])),
+
         }
     };
 }

@@ -13,7 +13,7 @@ import {categoryItem} from "@/interfaces/generalTypesInterfaces";
 import HeaderWraper from "@/Components/Header/Header";
 import Footer from "@/Components/Footer/Footer";
 import {useRouter} from "next/router";
-import '../i18n'
+import {appWithTranslation} from "next-i18next";
 
 function App({Component, pageProps}: AppProps<{ categories: categoryItem[] }>) {
     const {data} = useSettingsQuery('');
@@ -65,7 +65,7 @@ function App({Component, pageProps}: AppProps<{ categories: categoryItem[] }>) {
 const makeStore = () => store;
 export const wrapper = createWrapper(makeStore);
 
-export default wrapper.withRedux(App);
+export default wrapper.withRedux(appWithTranslation(App));
 
 export async function getServerSideProps(locale: any) {
 

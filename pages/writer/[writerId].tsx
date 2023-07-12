@@ -1,6 +1,6 @@
 import React, {useMemo} from "react";
 import ReactHtmlParser from 'react-html-parser'
-import {useTranslation} from "react-i18next";
+import {useTranslation} from "next-i18next";
 import {contentItem} from "@/interfaces/generalTypesInterfaces";
 import {transformDate} from "@/utils/transformDate";
 import ModalForm from "@/Components/ModalForm/ModalForm";
@@ -8,6 +8,7 @@ import Image from "next/image";
 import Head from "next/head";
 import AlertComponent from "@/Components/AleryComponent/AlertComponent";
 import {useRouter} from "next/router";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 
 const WritePage = ({data: {writers, relatedItems}}: {
     data: { writers: contentItem, relatedItems: contentItem[] }
@@ -93,7 +94,8 @@ export async function getServerSideProps(context: any) {
     const json = await data.json();
     return {
         props: {
-            data: json
+            data: json,
+            ...(await serverSideTranslations(context.locale, ["common"])),
         }
     };
 }

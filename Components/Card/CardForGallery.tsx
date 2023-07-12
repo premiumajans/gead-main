@@ -1,5 +1,5 @@
 import Image from "next/image";
-import {useTranslation} from "react-i18next";
+import {useTranslation} from "next-i18next";
 import Link from "next/link";
 import {galleryInterface} from "@/interfaces/generalTypesInterfaces";
 import {getLanguage, setCurrentGallery} from "@/Store/Slices/General";

@@ -1,4 +1,4 @@
-import {useTranslation} from "react-i18next";
+import {useTranslation} from "next-i18next";
 import {useSelector} from "react-redux";
 import {getSettingState} from "@/Store/Slices/General";
 import * as yup from "yup";
@@ -8,6 +8,7 @@ import {usePostContactMutation} from "@/Store/Query/GeneralQuery";
 import Swal from "sweetalert2";
 import Head from "next/head";
 import React from "react";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 
 const Contact = () => {
     const {t, i18n} = useTranslation("common");
@@ -288,3 +289,12 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
+export async function getStaticProps(context:any) {
+    return {
+        props:{
+            ...(await serverSideTranslations(context.locale, ["common"])),
+        }
+    }
+}

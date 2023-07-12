@@ -9,9 +9,10 @@ import {contentItem, mainSliderInterface, usefulLink} from "@/interfaces/general
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import React from "react";
-import {useTranslation} from "react-i18next";
+import {useTranslation} from "next-i18next";
 import CustomHeaderLineless from "@/Components/CustomHeaderLineless/CustomHeaderLineless";
 import {useRouter} from "next/router";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 
 export default function Home({data, link: {links}, news: {news}, writer: {writers}}: {
     data: { sliders: mainSliderInterface[] },
@@ -140,8 +141,8 @@ export async function getServerSideProps(context: any) {
             data: dataJson,
             link: linkJson,
             news: newsJson,
-            writer: writerJson
-
+            writer: writerJson,
+            ...(await serverSideTranslations(context.locale, ["common"])),
         }
     };
 }

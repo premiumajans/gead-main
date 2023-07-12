@@ -1,11 +1,12 @@
 import CardTopImg from "@/Components/Card/CardTopImg";
-import {useTranslation} from "react-i18next";
+import {useTranslation} from "next-i18next";
 import {categoryItem, contentItem} from "@/interfaces/generalTypesInterfaces";
 import CustomHeader from "@/Components/CustomHeader/CustomHeader";
 import React from "react";
 import {useRouter} from "next/router";
 import Head from "next/head";
 import Image from "next/image";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 
 const ContentPage = ({data,category:{categories}}:{data:{content:contentItem[]}, category:{categories:categoryItem[]} }) => {
     const {query: {cat_id, alt_id}} = useRouter()
@@ -51,7 +52,6 @@ const ContentPage = ({data,category:{categories}}:{data:{content:contentItem[]},
 export async function getServerSideProps(context:any) {
     const {query,locale} = context
 
-    console.log(locale)
 
     const data = await fetch(`https://admin.gead.az/api/content/${query.cat_id}/${query.alt_id}`);
     const json = await data.json();
@@ -61,7 +61,9 @@ export async function getServerSideProps(context:any) {
     return {
         props:{
             data: json,
-            category:categoryJson
+            category:categoryJson,
+            ...(await serverSideTranslations(context.locale, ["common"])),
+
         }
     };
 }

@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {useTranslation} from "react-i18next";
+import {useTranslation} from "next-i18next";
 import React, {useState} from "react";
 import {useRouter} from "next/router";
 import Swal from "sweetalert2";

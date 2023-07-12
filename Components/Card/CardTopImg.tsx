@@ -1,12 +1,9 @@
 import Image from "next/image";
-import {useTranslation} from "react-i18next";
+import {useTranslation} from "next-i18next";
 import {contentItem} from "@/interfaces/generalTypesInterfaces";
 import Link from "next/link";
-import {useDispatch, useSelector} from "react-redux";
-import {getLanguage} from "@/Store/Slices/General";
 
 const CardTopImg = ({width, item, link}: { width?: string, item?: contentItem, link?:string }) => {
-    const dispatch = useDispatch()
     const {t, i18n} = useTranslation('common')
     return <>
         <Link
