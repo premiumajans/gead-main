@@ -4,6 +4,7 @@ import CustomHeader from "@/Components/CustomHeader/CustomHeader";
 import {videoItem} from "@/interfaces/generalTypesInterfaces";
 import Head from "next/head";
 import AlertComponent from "@/Components/AleryComponent/AlertComponent";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 
 const GalleryVideos = ({videos}: { videos: videoItem[] }) => {
     const {i18n, t} = useTranslation('common')
@@ -39,7 +40,9 @@ export async function getServerSideProps(context: any) {
     const json = await data.json();
     return {
         props: {
-            videos: json?.videos
+            videos: json?.videos,
+            ...(await serverSideTranslations(context.locale, ["common"])),
+
         }
     };
 }
