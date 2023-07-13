@@ -8,6 +8,7 @@ import {useTranslation} from "next-i18next";
 import {useRouter} from "next/router";
 import CustomHeaderLineless from "@/Components/CustomHeaderLineless/CustomHeaderLineless";
 import React from "react";
+import CardWithText from "@/Components/Card/CardWithText";
 
 const CarouselWithCard = ({items, title, link}: { items: contentItem[], title: string, link?: string }) => {
     const {pathname} = useRouter()
@@ -41,7 +42,7 @@ const CarouselWithCard = ({items, title, link}: { items: contentItem[], title: s
                             return <div key={item.id} className="item">
 
                                 <div>
-                                    <CardTopImg link={(link ? link + item.id : '')} item={item} width={'auto'}/>
+                                    <CardWithText link={(link ? link + item.id : '')} item={item} width={'auto'}/>
                                 </div>
 
                             </div>

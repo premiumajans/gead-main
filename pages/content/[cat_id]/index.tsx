@@ -1,4 +1,3 @@
-import CarouselWithCard from "@/Components/Carousel/CarouselWithCard";
 import FsLightbox from "fslightbox-react";
 import React, {useEffect, useMemo, useState} from "react";
 import Image from "next/image";
@@ -14,6 +13,7 @@ import Head from "next/head";
 import AlertComponent from "@/Components/AleryComponent/AlertComponent";
 import ContentForm from "@/Components/ContentForm/ContentForm";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import CarouselWithTextCard from "@/Components/Carousel/CarouselWithTextCard";
 
 const NewPage = ({data}: { data: { content: contentItem, related: contentItem[] } }) => {
     const {query} = useRouter()
@@ -165,7 +165,7 @@ const NewPage = ({data}: { data: { content: contentItem, related: contentItem[] 
 
                     </div>
                     {related.length > 0 ? <div className="carousel mt-5">
-                        <CarouselWithCard title={'related_news'} items={related}/>
+                        <CarouselWithTextCard title={'related_news'} items={related}/>
                     </div> : ''
                     }
 
