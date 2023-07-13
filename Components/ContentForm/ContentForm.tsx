@@ -74,7 +74,7 @@ const ContentForm = () => {
 
 
     return <>
-        <div className="card my-4">
+        <div className="my-4">
             <h2 className="font-weight-bold text-8 mt-2 mb-0 m-4">
                 {t("register")}
             </h2>

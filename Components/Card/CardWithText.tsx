@@ -3,7 +3,7 @@ import {useTranslation} from "next-i18next";
 import {contentItem} from "@/interfaces/generalTypesInterfaces";
 import Link from "next/link";
 
-const CardTopImg = ({width, item, link}: { width?: string, item?: contentItem, link?:string }) => {
+const CardWithText = ({width, item, link}: { width?: string, item?: contentItem, link?:string }) => {
     const {t, i18n} = useTranslation('common')
     return <>
         <Link
@@ -13,11 +13,7 @@ const CardTopImg = ({width, item, link}: { width?: string, item?: contentItem, l
 
 
 
-            <div style={{animationDelay: "200ms"}} className="card my-3 appear-animation"  data-appear-animation="fadeInUpShorter" data-appear-animation-delay="200">
-                <Image loading={'lazy'} width='150' height='200'
-                       style={{maxHeight: "200px", height: '200px', objectFit: 'cover'}} className="card-img-top"
-                       src={(process.env.NEXT_PUBLIC_MAIN_PATH_WITHOUT_API! + item?.photo) || "/img/blog/wide/blog-11.jpg"}
-                       alt={item?.translations.find((item => item.locale === i18n.language))?.name || 'img'}/>
+            <div style={{animationDelay: "200ms", height:'auto'}} className="card my-3 appear-animation"  data-appear-animation="fadeInUpShorter" data-appear-animation-delay="200">
                 <div style={{padding: '1rem'}} className="card-body">
                     <h4 style={{
                         textOverflow: 'ellipsis',
@@ -36,4 +32,4 @@ const CardTopImg = ({width, item, link}: { width?: string, item?: contentItem, l
     </>
 }
 
-export default CardTopImg
+export default CardWithText

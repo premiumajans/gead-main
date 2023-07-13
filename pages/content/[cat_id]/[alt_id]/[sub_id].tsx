@@ -7,6 +7,7 @@ import {useRouter} from "next/router";
 import Head from "next/head";
 import Image from "next/image";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import CardWithText from "@/Components/Card/CardWithText";
 
 
 const ContentPage = ({data,category:{categories}}: { data: { content: contentItem[] },category:{categories:categoryItem[]} }) => {
@@ -33,9 +34,8 @@ const ContentPage = ({data,category:{categories}}: { data: { content: contentIte
                 </CustomHeader>
 
                 <div className='my-4 row'>
-                    {data?.content.length > 0 && data?.content.map((item) => {
-                        return <CardTopImg key={item.id} item={item}
-                                           width={'none'}/>
+                    {data?.content.length > 0 && data?.content.sort((a,b) => b.id - a.id).map((item) => {
+                        return <CardWithText key={item.id} item={item} width={"none"}/>
                     })}
                 </div>
             </> : <div className="appear-animation custom-container py-4"

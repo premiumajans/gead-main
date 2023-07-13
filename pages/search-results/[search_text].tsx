@@ -108,7 +108,7 @@ const Search_text = ({data: {result}}: { data: { result: searchItem[] } }) => {
                         <div className="col">
                             {isArrayResult ? <>
                                 <ul className="simple-post-list m-0">
-                                    {result && result.length > 0 && result.slice((pagination - 1) * 10, (pagination - 1) * 10 + 10).map(item => {
+                                    {result && result.length > 0 && result.sort((a,b) => b.id - a.id).slice((pagination - 1) * 10, (pagination - 1) * 10 + 10).map(item => {
                                         return <li key={item.id}>
                                             <div style={{display:'flex', alignItems:'center'}} className="post-info">
                                                 {item?.photo?.length > 0 &&  <Link

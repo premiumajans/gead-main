@@ -24,7 +24,7 @@ const GalleryVideos = ({videos}: { videos: videoItem[] }) => {
                             <CustomHeader>
                                 {t('video-gallery')}
                             </CustomHeader>
-                        {videos?.map(({id, link}) => {
+                        {videos?.sort((a,b) => b.id - a.id).map(({id, link}) => {
                             return <iframe allowFullScreen className={'col-lg-4 col-sm-6 col-12 my-2'} key={id} src={link} height={250}/>
                         })}
                         </>

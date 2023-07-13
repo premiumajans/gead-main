@@ -23,7 +23,7 @@ const PhotoGalery = ({data}: { data: galleryInterface[] }) => {
                 </CustomHeader>
 
                 <div className='my-4 row'>
-                    {data?.map((item) => {
+                    {data?.sort((a,b) => b.id - a.id).map((item) => {
                         return <CardForGallery key={item.id} item={item}
                                                width={'none'}/>
                     })}

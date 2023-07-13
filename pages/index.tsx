@@ -100,7 +100,7 @@ export default function Home({data, link: {links}, news: {news}, writer: {writer
                                 {t('news')}
                             </CustomHeaderLineless>
                             <div className="row d-flex flex-wrap py-4 ">
-                                {news.map(item => {
+                                {news.sort((a,b) => b.id - a.id).map(item => {
                                     return <CardTopImg key={item.id} item={item} width={""}/>
                                 })}
                             </div>
