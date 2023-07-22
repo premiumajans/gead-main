@@ -324,3 +324,9 @@ html {
 p, h3 {
   margin: 0;
 }
+
+.post-content {
+  img {
+    max-width: 100%;
+  }
+}
