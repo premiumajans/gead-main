@@ -24,11 +24,18 @@ const HeaderWraper = ({ children }: PropsWithChildren) => {
     window.addEventListener("click", (e: any) => {
       const searchIcon = document.querySelector("#searchIcon");
       const searchBox = document.querySelector("#headerTopSearchDropdown");
+      const hamburgerIcon = document.querySelector("#hamburger-icon");
+      const hamburgerMenu = document.querySelector("#hamburgerMenu");
       if (
         e.composedPath().includes(searchIcon) ||
         e.composedPath().includes(searchBox)
       ) return;
       else setSearch(false)
+
+      if(e.composedPath().includes(hamburgerIcon)|| e.composedPath().includes(hamburgerMenu)){
+        return;
+      }else setMenu(false)
+
     });
   }, []);
 
@@ -117,7 +124,7 @@ const HeaderWraper = ({ children }: PropsWithChildren) => {
               <div className="header-column justify-content-end">
                 <div className="header-row">
                   <div className="header-nav pt-1 firs-nav">
-                    <div className="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1">
+                    <div id="hamburgerMenu" className="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1">
                       {show && (
                         <nav className={"collapse " + (menu ? "show" : "")}>
                           <div
@@ -759,6 +766,7 @@ const HeaderWraper = ({ children }: PropsWithChildren) => {
                     </div>
                     <button
                       onClick={() => setMenu(!menu)}
+                      id="hamburger-icon"
                       className="btn header-btn-collapse-nav"
                       data-bs-toggle="collapse"
                       data-bs-target=".header-nav-main nav"
