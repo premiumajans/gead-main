@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+@keyframes loader-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  4.9% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  5% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+.card {
+  height: 320px;
+  max-height:320px
+}
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.custom-container {
+  padding: 0 5%;
+}
+
+.dropdown-menu {
+  width: 100%;
+}
+
+#header .header-nav-main nav ul li {
+  height: min-content;
+  padding: 0;
+}
+
+  .dropdown-item {
+    white-space: normal !important;
+  }
+
+body {
+  header {
+    .custom-container {
+      min-height: auto ;
+    }
+  }
+  .custom-container {
+    min-height: 70vh;
+  }
+}
+.search_wraper {
+  display: none;
+}
+  //.firs-nav {
+  //  //justify-content: flex-start !important;
+  //  align-self: auto !important;
+  //}
+
+.main {
+  min-height: 70vh;
+}
+
+.post-image {
+  img {
+    width: 100%;
+  }
+}
+
+html .scroll-to-top.visible {
+  opacity: .75;
+  margin: 10px;
+}
+
+.mobile {
+  display: none !important;
+}
+
+img[alt='Logo'] {
+  height: 100% !important;
+}
+
+#footer {
+  margin-top: 0;
+}
+
+.slick-next {
+  &:before {
+    font-size: 30px !important;
+  }
+  position:absolute;
+  right: 20px !important;
+  z-index: 100;
+}
+
+.slick-prev {
+  &:before {
+    font-size: 30px !important;
+  }
+  position:absolute;
+  left: 20px !important;
+  z-index: 100;
+}
+
+[class~=page-preloader] [class~=loader] div {
+  position: absolute;
+}
+[class~=page-preloader] [class~=loader] div {
+  border-left-width: .041666667in;
+}
+[class~=page-preloader] [class~=loader] div {
+  border-bottom-width: .041666667in;
+}
+[class~=page-preloader] [class~=loader] div {
+  border-right-width: .041666667in;
+}
+
+[class~=page-preloader] [class~=loader] div {
+  border-top-width: .041666667in;
+}
+input[type=text], select, [class~=page-preloader] [class~=loader] div {
+  border-left-style: solid;
+}
+[class~=page-preloader] [class~=loader] div, input[type=text], select {
+  border-bottom-style: solid;
+}
+select, [class~=page-preloader] [class~=loader] div, input[type=text] {
+  border-right-style: solid;
+}
+input[type=text], select, [class~=page-preloader] [class~=loader] div {
+  border-top-style: solid;
+}
+[class~=pagination] ul li a:hover, [class~=page-preloader] [class~=loader] div {
+  border-left-color: #000;
+}
+[class~=pagination] ul li a:hover, [class~=page-preloader] [class~=loader] div {
+  border-bottom-color: #000;
+}
+
+[class~=page-preloader] [class~=loader], [class~=rating] [class~=review-count], [class~=content-product-list] [class~=products-thumb], [class~=rating] [class~=star] {
+  display: inline-block;
+}
+[class~=pagination] ul li a:hover, [class~=page-preloader] [class~=loader] div {
+  border-right-color: #000;
+}
+[class~=page-preloader] [class~=loader], .block-section {
+  position: relative;
+}
+
+[class~=page-preloader] [class~=loader] {
+  width: .833333333in;
+}
+[class~=page-preloader] [class~=loader] {
+  height: 80px;
+}
+[class~=pagination] ul li a:hover, [class~=page-preloader] [class~=loader] div {
+  border-top-color: #000;
+}
+[class~=page-preloader] [class~=loader] div {
+  border-image: none;
+}
+[class~=page-preloader] [class~=loader] div {
+  opacity: 1;
+}
+[class~=page-preloader] [class~=loader] div {
+  animation: loader-ripple 2s cubic-bezier(0, .2, .8, 1) infinite;
+}
+[class~=page-preloader] [class~=loader] div:nth-child(2) {
+  animation-delay: -1s;
+}
+[class~=page-preloader] {
+  position: fixed;
+}
+[class~=page-preloader] {
+  top: 0;
+}
+[class~=page-preloader] {
+  left: 0;
+}
+[class~=page-preloader] {
+  right: 0;
+}
+[class~=page-preloader], [class~=btn-underline]:before {
+  bottom: 0;
+}
+[class~=page-preloader] {
+  background-color: #fff;
+}
+[class~=page-preloader] {
+  z-index: 9999999;
+}
+[class~=page-preloader] {
+  align-content: center;
+}
+[class~=page-preloader] {
+  align-items: center;
+}
+[class~=page-preloader] {
+  justify-content: center;
+}
+[class~=page-preloader] {
+  display: -webkit-box;
+}
+[class~=page-preloader] {
+  display: -ms-flexbox;
+}
+[class~=page-preloader] {
+  display: flex;
+}
+
+[class~=page-preloader], [class~=products-loadmore] [class~=loadmore][class~=loading] [class~=lds-ellipsis] {
+  height: 100%;
+}
+
+
+[class~=page-preloader] [class~=loader] div {
+  border-radius: 50%;
+}
+
+[class~=page-preloader] [class~=loader] div {
+  animation: loader-ripple 2s cubic-bezier(0, .2, .8, 1) infinite;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sticky-header-active {
+  .firs-nav {
+    justify-content: end !important;
+  }
+}
+
+html {
+  overflow-x: hidden;
+}
+
+.social-icons {
+  li {
+    padding: 0 !important;
+  }
+}
+
+.scroll-to-top {
+  margin: 10px;
+  opacity: 0;
+}
+
+.sticky-header-active {
+  .scroll-to-top {
+    display: block !important;
+    opacity: 0.75;
+  }
+}
+
+
+// html , body, #__next {
+//   position: relative;
+//   min-height: 100vh;
+// }
+
+// footer {
+//   position: absolute !important;
+//   width: 100%;
+//   bottom: 0;
+// }
+
+
+// {/* <!-- Vendor CSS --> */}
+@import './media-styles.scss';
+@import "/vendor/bootstrap/css/bootstrap.min.css";
+@import "/vendor/fontawesome-free/css/all.min.css";
+@import "/vendor/animate/animate.compat.css";
+@import "/vendor/simple-line-icons/css/simple-line-icons.min.css";
+@import "/vendor/owl.carousel/assets/owl.carousel.min.css";
+@import "/vendor/owl.carousel/assets/owl.theme.default.min.css";
+@import "/vendor/magnific-popup/magnific-popup.min.css";
+
+// {/* <!-- Theme CSS --> */}
+@import "/css/theme.css";
+@import "/css/theme-elements.css";
+@import "/css/theme-blog.css";
+@import "/css/theme-shop.css";
+
+// {/* <!-- Current Page CSS -->
+@import "/vendor/circle-flip-slideshow/css/component.css";
+
+// {/* <!-- Skin CSS -->
+@import "/css/skins/default.css";
+
+// {/* <!-- Theme Custom CSS --> */}
+@import "/css/custom.css";
+
+
+p, h3 {
+  margin: 0;
+}
+
+.post-content {
+  img {
+    max-width: 100%;
+  }
+}
