@@ -22,7 +22,6 @@ const ContentPage = ({data,category:{categories}}: { data: { content: contentIte
     return <>
         <Head>
             <meta name="keywords" content={header}/>
-
             <title>
                 {(header.toUpperCase() + ' | GEAD')}
             </title>

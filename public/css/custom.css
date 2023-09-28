@@ -1,6 +1,21 @@
-.slick-next:before, .slick-prev:before{
+.slick-next:before,
+.slick-prev:before {
     padding: 4px 2px 0 !important;
     background-color: #fff !important;
     color: #0a1128 !important;
     border-radius: 50% !important;
+}
+
+.truncate {
+    text-overflow: 'ellipsis';
+    white-space: "nowrap";
+    height: "30px";
+    overflow: "hidden"
+}
+
+.truncate:hover {
+    text-overflow:initial;
+    white-space: "nowrap";
+    height: "30px";
+    overflow: auto
 }
