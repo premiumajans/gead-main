@@ -110,12 +110,18 @@ pre {
   border-bottom: 0 !important;
 }
 #header .header-container {
+	background:  #f4f3ee;
   position: relative;
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   transition: ease height 300ms;
 }
+
+body{
+  background-color: #f4f3ee !important;
+}
+
 @media (max-width: 991px) {
   #header
     .header-container:not(.container):not(.container-fluid)
