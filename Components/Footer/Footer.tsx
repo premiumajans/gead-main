@@ -12,6 +12,8 @@ const Footer = () => {
   // console.log(settings);
   // console.log(apiSettings);
   const apiSettings = useSettingsQuery()?.data?.settings
+  console.log(apiSettings);
+  
   
   return (
     <>
@@ -114,7 +116,7 @@ const Footer = () => {
                       apiSettings?.find((el) => el.name == "linkedin")?.link
                     }`}
                     target="_blank"
-                    title="youtube"
+                    title="linkedin"
                   >
                     <i className="fa-brands fa-linkedin-in"></i>
                   </a>

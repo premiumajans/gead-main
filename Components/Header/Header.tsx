@@ -747,7 +747,7 @@ const HeaderWraper = ({ children }: PropsWithChildren) => {
                                   ?.link
                               }`}
                               target="_blank"
-                              title="youtube"
+                              title="linkedin"
                             >
                               <i className="fa-brands fa-linkedin-in"></i>
                             </a>
