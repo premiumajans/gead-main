@@ -183,8 +183,14 @@ body {
   scale: 1.1;
 }
 
-#hamburger-icon {
-  
+.slider-item{
+  position: relative;
+}
+.slider-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgb(0,0,0);
+  background: linear-gradient(90deg, rgba(0,0,0,0.499124649859944) 0%, rgba(0,0,0,0.4963235294117647) 100%);
 }
 
 .news-card:hover .truncate {

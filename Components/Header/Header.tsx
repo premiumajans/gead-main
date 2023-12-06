@@ -29,13 +29,16 @@ const HeaderWraper = ({ children }: PropsWithChildren) => {
       if (
         e.composedPath().includes(searchIcon) ||
         e.composedPath().includes(searchBox)
-      ) return;
-      else setSearch(false)
-
-      if(e.composedPath().includes(hamburgerIcon)|| e.composedPath().includes(hamburgerMenu)){
+      )
         return;
-      }else setMenu(false)
+      else setSearch(false);
 
+      if (
+        e.composedPath().includes(hamburgerIcon) ||
+        e.composedPath().includes(hamburgerMenu)
+      ) {
+        return;
+      } else setMenu(false);
     });
   }, []);
 
@@ -124,7 +127,10 @@ const HeaderWraper = ({ children }: PropsWithChildren) => {
               <div className="header-column justify-content-end">
                 <div className="header-row">
                   <div className="header-nav pt-1 firs-nav">
-                    <div id="hamburgerMenu" className="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1">
+                    <div
+                      id="hamburgerMenu"
+                      className="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1"
+                    >
                       {show && (
                         <nav className={"collapse " + (menu ? "show" : "")}>
                           <div
