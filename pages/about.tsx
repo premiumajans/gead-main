@@ -79,7 +79,7 @@ const About = ({data}: { data: aboutResponse[] }) => {
 
 export async function getServerSideProps(context: any) {
 
-    const data = await fetch(`https://admin.gead.az/api/about`)
+    const data = await fetch(`https://admin.gead.az/api/about`,{ cache: 'no-store' })
     const json = await data.json();
     return {
         props: {

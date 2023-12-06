@@ -37,7 +37,7 @@ const PhotoGalery = ({data}: { data: galleryInterface[] }) => {
 
 export async function getServerSideProps(context: any) {
 
-    const data = await fetch(`https://admin.gead.az/api/gallery`)
+    const data = await fetch(`https://admin.gead.az/api/gallery`,{ cache: 'no-store' })
     const json = await data.json();
     return {
         props: {

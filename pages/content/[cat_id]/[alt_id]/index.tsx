@@ -53,10 +53,10 @@ export async function getServerSideProps(context:any) {
     const {query,locale} = context
 
 
-    const data = await fetch(`https://admin.gead.az/api/content/${query.cat_id}/${query.alt_id}`);
+    const data = await fetch(`https://admin.gead.az/api/content/${query.cat_id}/${query.alt_id}`,{ cache: 'no-store' });
     const json = await data.json();
 
-    const category = await fetch(`https://admin.gead.az/api/categories`)
+    const category = await fetch(`https://admin.gead.az/api/categories`,{ cache: 'no-store' })
     const categoryJson = await category.json();
     return {
         props:{

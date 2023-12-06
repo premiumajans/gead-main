@@ -199,10 +199,10 @@ export default function Home({
 }
 
 export async function getServerSideProps(context: any) {
-  const data = await fetch(`https://admin.gead.az/api/slider`);
-  const link = await fetch(`https://admin.gead.az/api/useful-links`);
-  const news = await fetch(`https://admin.gead.az/api/content-news`);
-  const writer = await fetch(`https://admin.gead.az/api/writer`);
+  const data = await fetch(`https://admin.gead.az/api/slider`,{ cache: 'no-store' });
+  const link = await fetch(`https://admin.gead.az/api/useful-links`,{ cache: 'no-store' });
+  const news = await fetch(`https://admin.gead.az/api/content-news`,{ cache: 'no-store' });
+  const writer = await fetch(`https://admin.gead.az/api/writer`,{ cache: 'no-store' });
 
   const dataJson = await data.json();
   const linkJson = await link.json();

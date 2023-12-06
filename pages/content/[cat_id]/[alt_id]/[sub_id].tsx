@@ -51,10 +51,10 @@ const ContentPage = ({data,category:{categories}}: { data: { content: contentIte
 export async function getServerSideProps(context: any) {
     const {query} = context
 
-    const data = await fetch(`https://admin.gead.az/api/content/${query.cat_id}/${query.alt_id}/${query.sub_id}`)
+    const data = await fetch(`https://admin.gead.az/api/content/${query.cat_id}/${query.alt_id}/${query.sub_id}`,{ cache: 'no-store' })
     const json = await data.json();
 
-    const category = await fetch(`https://admin.gead.az/api/categories`)
+    const category = await fetch(`https://admin.gead.az/api/categories`,{ cache: 'no-store' })
     const categoryJson = await category.json();
 
     return {

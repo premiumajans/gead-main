@@ -36,7 +36,7 @@ const GalleryVideos = ({videos}: { videos: videoItem[] }) => {
 };
 
 export async function getServerSideProps(context: any) {
-    const data = await fetch(`https://admin.gead.az/api/video`)
+    const data = await fetch(`https://admin.gead.az/api/video`,{ cache: 'no-store' })
     const json = await data.json();
     return {
         props: {

@@ -87,7 +87,7 @@ export async function getServerSideProps(context: any) {
 
     const {id} = context.query
 
-    const data = await fetch(`https://admin.gead.az/api/gallery/` + id )
+    const data = await fetch(`https://admin.gead.az/api/gallery/` + id,{ cache: 'no-store' } )
     const json = await data.json();
     return {
         props: {

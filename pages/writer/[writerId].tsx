@@ -100,7 +100,7 @@ const WritePage = ({
                               className="img-fluid border-radius-0"
                               src={
                                 process.env[
-                                  "NEXT_PUBLIC_MAIN_PATH_WITHOUT_API"
+                                "NEXT_PUBLIC_MAIN_PATH_WITHOUT_API"
                                 ] + photo
                               }
                               alt={
@@ -118,9 +118,9 @@ const WritePage = ({
                       <div className="post-content ms-0">
                         {ReactHtmlParser(
                           translations &&
-                            translations?.find(
-                              (item) => item.locale === i18n.language
-                            )?.description!
+                          translations?.find(
+                            (item) => item.locale === i18n.language
+                          )?.description!
                         ) || ""}
                       </div>
                     </article>
@@ -150,7 +150,7 @@ export async function getServerSideProps(context: any) {
 
   const data = await fetch(
     `https://admin.gead.az/api/writer/${query.writerId}`
-  );
+    , { cache: 'no-store' });
 
   const json = await data.json();
   return {
